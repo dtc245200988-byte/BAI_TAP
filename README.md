@@ -1,27 +1,29 @@
 # TỔNG HỢP BÀI TẬP CƠ SỞ DỮ LIỆU & SQL (DATABASE PORTFOLIO)
 
-Repository lưu trữ toàn bộ các bài tập thực hành thiết kế mô hình ERD, chuyển đổi mô hình quan hệ, chuẩn hóa CSDL và lập trình SQL.
+Repository lưu trữ toàn bộ các bài tập thực hành thiết kế mô hình ERD, chuẩn hóa cơ sở dữ liệu và lập trình SQL.
 
 Link Repository GitHub: [https://github.com/dtc245200988-byte/BAI_TAP.git](https://github.com/dtc245200988-byte/BAI_TAP.git)
 
 ---
 
+## 📌 BÀI 6: XÂY DỰNG CƠ SỞ DỮ LIỆU `QuanLyBanHang` (SQL)
+
+### 1. Mô tả bài toán
+Tạo cơ sở dữ liệu quản lý bán hàng siêu thị có tên **`QuanLyBanHang`** gồm 4 bảng:
+- **`Customer`**: Lưu trữ danh sách khách hàng (`cID`, `cName`, `cAge`).
+- **`Order`**: Lưu các hóa đơn bán hàng (`oID`, `cID`, `oDate`, `oTotalPrice`).
+- **`Product`**: Lưu thông tin sản phẩm (`pID`, `pName`, `pPrice`).
+- **`OrderDetail`**: Bảng trung gian quan hệ N-N lưu chi tiết hóa đơn (`oID`, `pID`, `odQTY`).
+
+### 2. Danh sách file nộp cho Bài 6:
+- 📄 **`quan_ly_ban_hang.sql`**: Mã nguồn DDL tạo CSDL, 4 bảng dữ liệu kèm các ràng buộc `PRIMARY KEY`, `FOREIGN KEY`, `CHECK`, `DEFAULT` và dữ liệu mẫu DML.
+- 📝 **`quan_ly_ban_hang_report.md`**: Báo cáo tài liệu thiết kế chi tiết cấu trúc bảng và ràng buộc.
+
+---
+
 ## 📌 BÀI 5: CHUYỂN ĐỔI SƠ ĐỒ ERD SANG MÔ HÌNH DỮ LIỆU QUAN HỆ
-
-### 1. Phân tích chuyển đổi 4 bước:
-- 📄 **`chuyen_doi_erd_report.md`**: Thuyết minh phân tích 4 bước (Xác định thực thể, mối quan hệ 1-N / N-N, chuyển đổi thuộc tính đa trị `SĐT` và liệt kê 9 bảng quan hệ).
-- 💻 **`chuyen_doi_erd_sang_quan_he.sql`**: Mã SQL DDL tạo 9 bảng chuẩn hóa (`PHIEUXUAT`, `VATTU`, `PHIEUNHAP`, `NHACC`, `NHACC_SDT`, `DONDH`, `ChiTietPhieuXuat`, `ChiTietPhieuNhap`, `ChiTietDonDatHang`).
-
-### 2. Danh sách 9 bảng sau khi chuyển đổi:
-1. `PHIEUXUAT` ($\underline{\text{SoPX}}, \text{NgayXuat}$)
-2. `VATTU` ($\underline{\text{MaVTU}}, \text{TenVTU}$)
-3. `PHIEUNHAP` ($\underline{\text{SoPN}}, \text{NgayNhap}$)
-4. `NHACC` ($\underline{\text{MaNCC}}, \text{TenNCC}, \text{DiaChi}$)
-5. `NHACC_SDT` ($\underline{\text{MaNCC}}, \underline{\text{SDT}}$)
-6. `DONDH` ($\underline{\text{SoDH}}, \text{NgayDH}, \text{MaNCC}$)
-7. `ChiTietPhieuXuat` ($\underline{\text{SoPX}}, \underline{\text{MaVTU}}, \text{DGXuat}, \text{SLXuat}$)
-8. `ChiTietPhieuNhap` ($\underline{\text{SoPN}}, \underline{\text{MaVTU}}, \text{DGNhap}, \text{SLNhap}$)
-9. `ChiTietDonDatHang` ($\underline{\text{SoDH}}, \underline{\text{MaVTU}}$)
+- 📄 `chuyen_doi_erd_report.md`: Báo cáo phân tích 4 bước chuyển đổi.
+- 💻 `chuyen_doi_erd_sang_quan_he.sql`: Mã DDL khởi tạo 9 bảng quan hệ.
 
 ---
 
@@ -53,6 +55,6 @@ Hình ảnh sơ đồ ERD chuẩn hóa: [`erd_step5_simplified.jpg`](./erd_step5
 cd "c:\Users\Admin\OneDrive\Desktop\công việc\BAI_TAP"
 
 git add .
-git commit -m "Hoan thanh bai tap Chuyen doi ERD sang mo hinh quan he"
+git commit -m "Hoan thanh bai tap tao CSDL QuanLyBanHang"
 git push origin main
 ```
