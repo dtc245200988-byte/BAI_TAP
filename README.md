@@ -6,20 +6,25 @@ Link Repository GitHub: [https://github.com/dtc245200988-byte/BAI_TAP.git](https
 
 ---
 
+## 📌 BÀI 8: THÊM DỮ LIỆU VÀO CSDL `QuanLySinhVien` (INSERT INTO)
+
+### 1. Mô tả bài toán
+Sử dụng các câu lệnh `INSERT INTO` để chèn dữ liệu mẫu vào 4 bảng của cơ sở dữ liệu **`QuanLySinhVien`**:
+- **Bảng `Class`**: Thêm các lớp `A1`, `A2`, `B3`.
+- **Bảng `Student`**: Thêm các sinh viên `Hung`, `Hoa`, `Manh`.
+- **Bảng `Subject`**: Thêm các môn `CF`, `C`, `HDJ`, `RDBMS`.
+- **Bảng `Mark`**: Thêm các điểm thi sinh viên.
+
+### 2. Danh sách file nộp cho Bài 8:
+- 📄 **`them_du_lieu_quan_ly_sinh_vien.sql`**: Mã SQL DML thực thi chèn dữ liệu mẫu vào 4 bảng theo các bước hướng dẫn.
+- 📄 **`quan_ly_sinh_vien.sql`**: File tổng hợp cả DDL (tạo CSDL, bảng) và DML (chèn dữ liệu).
+
+---
+
 ## 📌 BÀI 7: KHỦNG HOẢNG TẠI STARTUP AUTORIDE (SYSTEM RE-ENGINEERING)
-
-### 1. Mô tả bài toán & Giải pháp
-Tái cấu trúc CSDL ứng dụng thuê xe tự lái **AutoRide** khắc phục tình trạng thất thoát tiền cọc và không ghi nhận phí đền bù:
-- **Tái cấu trúc bảng `Rentals`**: Khóa trạng thái `status ENUM('BOOKED', 'ACTIVE', 'COMPLETED', 'CANCELLED')`.
-- **Bổ sung quản lý tài chính**: `security_deposit DECIMAL(12,2)`, `late_fee DECIMAL(12,2)` và `damage_fee DECIMAL(12,2)`.
-- **Bảng mới `Inspections`**: Lưu biên bản kiểm tra tình trạng xe (vỡ đèn, va chạm) liên kết với hợp đồng thuê xe.
-- **Ràng buộc Trigger toàn vẹn**: Trigger `trg_prevent_invalid_inspection` ngăn tạo biên bản kiểm tra cho hợp đồng đang `BOOKED`.
-- **Công thức hoàn cọc**: $\text{Refund} = \text{Deposit} - \text{Late Fee} - \text{Damage Fee}$.
-
-### 2. Danh sách file nộp cho Bài 7:
-- 📄 **`autoride_db.sql`**: Mã DDL, Trigger, DML kịch bản mô phỏng khách "Nguyen Van A" hư hỏng đèn pha & SELECT tính hoàn cọc.
-- 📝 **`er_activity_mapping.md`**: Báo cáo phân tích tính bắt buộc của `damage_fee` (< 200 từ) & 3 câu trả lời vấn đáp.
-- 🤖 **`ai_prompt_log.md`**: Nhật ký sử dụng AI thảo luận về `DECIMAL`, `COALESCE` và `Trigger`.
+- 📄 `autoride_db.sql`: Schema, Trigger, DML kịch bản mô phỏng hư hỏng xe & SELECT tính hoàn cọc.
+- 📝 `er_activity_mapping.md`: Phân tích tính bắt buộc của `damage_fee` & 3 câu trả lời vấn đáp.
+- 🤖 `ai_prompt_log.md`: Nhật ký thảo luận AI.
 
 ---
 
@@ -30,13 +35,13 @@ Tái cấu trúc CSDL ứng dụng thuê xe tự lái **AutoRide** khắc phục
 ---
 
 ## 📌 BÀI 5: CHUYỂN ĐỔI SƠ ĐỒ ERD SANG MÔ HÌNH DỮ LIỆU QUAN HỆ
-- 📄 `chuyen_doi_erd_report.md`: Báo cáo phân tích 4 bước chuyển đổi sơ đồ ERD Vật tư sang 9 bảng quan hệ.
-- 💻 `chuyen_doi_erd_sang_quan_he.sql`: Mã DDL khởi tạo 9 bảng quan hệ.
+- 📄 `chuyen_doi_erd_report.md`: Phân tích 4 bước chuyển đổi ERD Vật tư sang 9 bảng quan hệ.
+- 💻 `chuyen_doi_erd_sang_quan_he.sql`: Mã DDL 9 bảng.
 
 ---
 
 ## 📌 BÀI 4: KHỦNG HOẢNG TẠI PHÒNG KHÁM HEALTHSYNC
-- 📄 `healthsync_db.sql`: Schema, Trigger, DML kịch bản & SELECT báo cáo.
+- 📄 `healthsync_db.sql`: Schema, Trigger, DML & SELECT báo cáo.
 - 📝 `consistency_report.md`: Gap Analysis & Bảo vệ thiết kế.
 
 ---
@@ -62,6 +67,6 @@ Hình ảnh sơ đồ ERD chuẩn hóa: [`erd_step5_simplified.jpg`](./erd_step5
 cd "c:\Users\Admin\OneDrive\Desktop\công việc\BAI_TAP"
 
 git add .
-git commit -m "Hoan thanh bai thuc hanh Khung Hoang Tai Startup AutoRide"
+git commit -m "Hoan thanh bai tap Them du lieu voi INSERT INTO CSDL QuanLySinhVien"
 git push origin main
 ```
