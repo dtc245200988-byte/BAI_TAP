@@ -1,0 +1,80 @@
+-- ============================================================
+-- BÀI TẬP: CHUYỂN ĐỔI SƠ ĐỒ ERD SANG MÔ HÌNH DỮ LIỆU QUAN HỆ (SQL)
+-- Target Database: QuanLyVatTu
+-- Target Repo: https://github.com/dtc245200988-byte/BAI_TAP.git
+-- ============================================================
+
+CREATE DATABASE IF NOT EXISTS QuanLyVatTu;
+USE QuanLyVatTu;
+
+-- 1. Bảng NHACC (Nhà cung cấp)
+CREATE TABLE IF NOT EXISTS NHACC (
+    MaNCC VARCHAR(20) PRIMARY KEY,
+    TenNCC VARCHAR(100) NOT NULL,
+    DiaChi VARCHAR(200)
+);
+
+-- 2. Bảng NHACC_SDT (Tách từ thuộc tính đa trị SĐT của NHACC)
+CREATE TABLE IF NOT EXISTS NHACC_SDT (
+    MaNCC VARCHAR(20),
+    SDT VARCHAR(15),
+    PRIMARY KEY (MaNCC, SDT),
+    FOREIGN KEY (MaNCC) REFERENCES NHACC(MaNCC) ON DELETE CASCADE
+);
+
+-- 3. Bảng VATTU (Vật tư)
+CREATE TABLE IF NOT EXISTS VATTU (
+    MaVTU VARCHAR(20) PRIMARY KEY,
+    TenVTU VARCHAR(100) NOT NULL
+);
+
+-- 4. Bảng PHIEUXUAT (Phiếu xuất)
+CREATE TABLE IF NOT EXISTS PHIEUXUAT (
+    SoPX VARCHAR(20) PRIMARY KEY,
+    NgayXuat DATETIME NOT NULL
+);
+
+-- 5. Bảng PHIEUNHAP (Phiếu nhập)
+CREATE TABLE IF NOT EXISTS PHIEUNHAP (
+    SoPN VARCHAR(20) PRIMARY KEY,
+    NgayNhap DATETIME NOT NULL
+);
+
+-- 6. Bảng DONDH (Đơn đặt hàng - Quan hệ 1-N với NHACC, chứa khóa ngoại MaNCC)
+CREATE TABLE IF NOT EXISTS DONDH (
+    SoDH VARCHAR(20) PRIMARY KEY,
+    NgayDH DATETIME NOT NULL,
+    MaNCC VARCHAR(20) NOT NULL,
+    FOREIGN KEY (MaNCC) REFERENCES NHACC(MaNCC)
+);
+
+-- 7. Bảng ChiTietPhieuXuat (Sinh từ quan hệ N-N giữa PHIEUXUAT và VATTU)
+CREATE TABLE IF NOT EXISTS ChiTietPhieuXuat (
+    SoPX VARCHAR(20),
+    MaVTU VARCHAR(20),
+    DGXuat DECIMAL(15,2) NOT NULL DEFAULT 0,
+    SLXuat INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (SoPX, MaVTU),
+    FOREIGN KEY (SoPX) REFERENCES PHIEUXUAT(SoPX),
+    FOREIGN KEY (MaVTU) REFERENCES VATTU(MaVTU)
+);
+
+-- 8. Bảng ChiTietPhieuNhap (Sinh từ quan hệ N-N giữa PHIEUNHAP và VATTU)
+CREATE TABLE IF NOT EXISTS ChiTietPhieuNhap (
+    SoPN VARCHAR(20),
+    MaVTU VARCHAR(20),
+    DGNhap DECIMAL(15,2) NOT NULL DEFAULT 0,
+    SLNhap INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (SoPN, MaVTU),
+    FOREIGN KEY (SoPN) REFERENCES PHIEUNHAP(SoPN),
+    FOREIGN KEY (MaVTU) REFERENCES VATTU(MaVTU)
+);
+
+-- 9. Bảng ChiTietDonDatHang (Sinh từ quan hệ N-N giữa DONDH và VATTU)
+CREATE TABLE IF NOT EXISTS ChiTietDonDatHang (
+    SoDH VARCHAR(20),
+    MaVTU VARCHAR(20),
+    PRIMARY KEY (SoDH, MaVTU),
+    FOREIGN KEY (SoDH) REFERENCES DONDH(SoDH),
+    FOREIGN KEY (MaVTU) REFERENCES VATTU(MaVTU)
+);
