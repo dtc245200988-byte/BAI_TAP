@@ -6,17 +6,25 @@ Link Repository GitHub: [https://github.com/dtc245200988-byte/BAI_TAP.git](https
 
 ---
 
+## 📌 BÀI 11: LUYỆN TẬP CÁC CÂU LỆNH TRUY VẤN NÂNG CAO CSDL `QuanLySinhVien`
+
+### 1. Mô tả bài toán
+Thực hiện các yêu cầu truy vấn lọc dữ liệu phức tạp và cập nhật dữ liệu trên CSDL **`QuanLySinhVien`**:
+- Tìm sinh viên có tên bắt đầu bằng ký tự `'h'` (`LIKE 'h%'`).
+- Tìm các lớp học khai giảng vào tháng 12 (`MONTH(StartDate) = 12`).
+- Tìm môn học có số tín chỉ trong khoảng 3 đến 5 (`Credit BETWEEN 3 AND 5`).
+- Cập nhật `ClassID = 2` cho sinh viên tên `'Hung'` (`UPDATE Student`).
+- Hiển thị bảng điểm gồm `StudentName`, `SubName`, `Mark`, sắp xếp theo điểm giảm dần (`ORDER BY Mark DESC, StudentName ASC`).
+
+### 2. Danh sách file nộp cho Bài 11:
+- 📄 **`luyen_tap_truy_van_quan_ly_sinh_vien.sql`**: Mã SQL DML thực thi 5 yêu cầu truy vấn & cập nhật dữ liệu.
+
+---
+
 ## 📌 BÀI 10: TỐI ƯU TRUY VẤN JOIN & XỬ LÝ DỮ LIỆU THIẾU HỤT (FLASHMART)
-
-### 1. Mô tả bài toán & Giải pháp
-Tối ưu hóa các báo cáo SQL trên sàn thương mại điện tử **FlashMart** khắc phục tình trạng thất thoát dữ liệu do lạm dụng `INNER JOIN`:
-- **Báo cáo Marketing (Giữ toàn vẹn khách hàng)**: Sử dụng `LEFT JOIN` giữa `Customers` và `Orders` kết hợp `COUNT(o.order_id)` (thay vì `COUNT(*)`) để ghi nhận đúng 0 đơn hàng cho khách hàng chưa từng mua (Charlie).
-- **Báo cáo Kho vận (Sản phẩm ế - Anti-Join)**: Sử dụng kỹ thuật `LEFT JOIN` giữa `Products` và `Orders` kết hợp `WHERE o.order_id IS NULL` để lọc chính xác sản phẩm chưa bán ra (Keyboard 103).
-
-### 2. Danh sách file nộp cho Bài 10:
-- 📄 **`flashmart_reports.sql`**: Mã DDL tạo CSDL, chèn dữ liệu mẫu và 2 câu lệnh `SELECT` truy vấn đã tối ưu hóa.
-- 📝 **`join_analysis.md`**: Giải trình lý do dùng `COUNT(o.order_id)` (< 150 từ) & 3 câu trả lời vấn đáp với CDO.
-- 🤖 **`ai_prompt_log.md`**: Nhật ký sử dụng AI thảo luận về `LEFT JOIN`, `COUNT` với `NULL` và thuật toán Nested-Loop Join.
+- 📄 `flashmart_reports.sql`: Mã DDL, DML & 2 câu lệnh `SELECT` đã tối ưu hóa.
+- 📝 `join_analysis.md`: Giải trình `COUNT(o.order_id)` & 3 câu trả lời vấn đáp với CDO.
+- 🤖 `ai_prompt_log.md`: Nhật ký thảo luận AI.
 
 ---
 
@@ -75,6 +83,6 @@ Hình ảnh sơ đồ ERD chuẩn hóa: [`erd_step5_simplified.jpg`](./erd_step5
 cd "c:\Users\Admin\OneDrive\Desktop\công việc\BAI_TAP"
 
 git add .
-git commit -m "Hoan thanh bai thuc hanh Toi uu truy van JOIN FlashMart"
+git commit -m "Hoan thanh bai tap Luyen tap truy van nang cao QuanLySinhVien"
 git push origin main
 ```
