@@ -1,141 +1,48 @@
-# TỔNG HỢP BÀI TẬP CƠ SỞ DỮ LIỆU & SQL (DATABASE ASSIGNMENTS)
+# TỔNG HỢP BÀI TẬP CƠ SỞ DỮ LIỆU & SQL (DATABASE PORTFOLIO)
 
-Repository tổng hợp đầy đủ các bài tập thực hành thiết kế cơ sở dữ liệu (ERD) và lập trình SQL.
+Repository lưu trữ toàn bộ các bài tập thực hành thiết kế mô hình ERD, chuẩn hóa cơ sở dữ liệu và lập trình SQL.
 
 Link Repository GitHub: [https://github.com/dtc245200988-byte/BAI_TAP.git](https://github.com/dtc245200988-byte/BAI_TAP.git)
 
 ---
 
+## 📌 BÀI 4: KHỦNG HOẢNG TẠI PHÒNG KHÁM HEALTHSYNC (SYSTEM RE-ENGINEERING)
+
+### 1. Mô tả bài toán & Giải pháp
+Tái cấu trúc cơ sở dữ liệu phòng khám **HealthSync** nhằm giải quyết tình trạng "vênh" giữa UML Activity Diagram của BA và CSDL legacy:
+- **Tái cấu trúc bảng `Appointments`**: Bỏ cột `is_active` (BOOLEAN), thay bằng `status ENUM('PENDING', 'CONFIRMED', 'CHECKED_IN', 'COMPLETED', 'CANCELLED')`.
+- **Bổ sung quản lý tài chính & hủy lịch**: Cột `deposit_amount DECIMAL(10,2)`, `penalty_fee DECIMAL(10,2)` và `cancel_reason VARCHAR(255)`.
+- **Thực thể Đơn thuốc mới (`Prescriptions`)**: Bổ sung bảng kê đơn thuốc kết nối với lịch hẹn hoàn thành.
+- **Ràng buộc Trigger toàn vẹn**: Trigger `trg_prevent_invalid_prescription` ngăn chặn kê đơn thuốc khi lịch hẹn chưa `COMPLETED`.
+
+### 2. Danh sách file nộp cho Bài 4:
+- 📄 **`healthsync_db.sql`**: Mã nguồn DDL, Trigger, DML kịch bản vận hành & truy vấn báo cáo tài chính.
+- 📝 **`consistency_report.md`**: Báo cáo phân tích 4 lỗ hổng dữ liệu (Gap Analysis) & 3 câu trả lời bảo vệ thiết kế.
+- 🤖 **`ai_prompt_log.md`**: Nhật ký sử dụng AI thảo luận về thiết kế `ENUM`, kiểu `DECIMAL` và `Trigger`.
+
+---
+
 ## 📌 BÀI 3: TẠO CƠ SỞ DỮ LIỆU `QuanLySinhVien` VÀ RÀNG BUỘC (SQL)
-
-### 1. Mô tả bài toán
-Xây dựng cơ sở dữ liệu có tên **`QuanLySinhVien`** gồm 4 bảng:
-- **`Class`**: Quản lý lớp học (`ClassID`, `ClassName`, `StartDate`, `Status`).
-- **`Student`**: Quản lý sinh viên (`StudentID`, `StudentName`, `Address`, `Phone`, `Status`, `ClassID`).
-- **`Subject`**: Quản lý môn học (`SubID`, `SubName`, `Credit`, `Status`).
-- **`Mark`**: Quản lý điểm thi sinh viên (`MarkID`, `SubID`, `StudentID`, `Mark`, `ExamTimes`).
-
-### 2. Chi tiết các ràng buộc áp dụng:
-- **Primary Key & Auto Increment:** Tự động tăng cho tất cả các mã ID chính (`ClassID`, `StudentID`, `SubID`, `MarkID`).
-- **Foreign Key:** 
-  - `Student(ClassID)` $\rightarrow$ `Class(ClassID)`
-  - `Mark(SubID)` $\rightarrow$ `Subject(SubID)`
-  - `Mark(StudentID)` $\rightarrow$ `Student(StudentID)`
-- **Unique Constraint:** Ràng buộc duy nhất `UNIQUE (SubID, StudentID)` trong bảng `Mark`.
-- **Default & Check Constraints:**
-  - `Credit`: Mặc định = 1, ĐK `Credit >= 1`
-  - `Subject.Status`: Mặc định = 1
-  - `Mark.Mark`: Mặc định = 0, ĐK `Mark BETWEEN 0 AND 100`
-  - `Mark.ExamTimes`: Mặc định = 1
-
-### 3. Mã nguồn SQL (`quan_ly_sinh_vien.sql`)
-
-```sql
--- Bước 1: Tạo cơ sở dữ liệu QuanLySinhVien
-CREATE DATABASE IF NOT EXISTS QuanLySinhVien;
-
--- Bước 2: Chọn Database QuanLySinhVien
-USE QuanLySinhVien;
-
--- Bước 3: Tạo bảng Class
-CREATE TABLE IF NOT EXISTS Class (
-    ClassID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ClassName VARCHAR(60) NOT NULL,
-    StartDate DATETIME NOT NULL,
-    Status BIT
-);
-
--- Bước 4: Tạo bảng Student
-CREATE TABLE IF NOT EXISTS Student (
-    StudentID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    StudentName VARCHAR(30) NOT NULL,
-    Address VARCHAR(50),
-    Phone VARCHAR(20),
-    Status BIT,
-    ClassID INT NOT NULL,
-    FOREIGN KEY (ClassID) REFERENCES Class (ClassID)
-);
-
--- Bước 5: Tạo bảng Subject
-CREATE TABLE IF NOT EXISTS Subject (
-    SubID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubName VARCHAR(30) NOT NULL,
-    Credit TINYINT NOT NULL DEFAULT 1 CHECK (Credit >= 1),
-    Status BIT DEFAULT 1
-);
-
--- Bước 6: Tạo bảng Mark
-CREATE TABLE IF NOT EXISTS Mark (
-    MarkID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubID INT NOT NULL,
-    StudentID INT NOT NULL,
-    Mark FLOAT DEFAULT 0 CHECK (Mark BETWEEN 0 AND 100),
-    ExamTimes TINYINT DEFAULT 1,
-    UNIQUE (SubID, StudentID),
-    FOREIGN KEY (SubID) REFERENCES Subject (SubID),
-    FOREIGN KEY (StudentID) REFERENCES Student (StudentID)
-);
-```
+File mã nguồn: [`quan_ly_sinh_vien.sql`](./quan_ly_sinh_vien.sql) (Bao gồm các bảng `Class`, `Student`, `Subject`, `Mark` với các ràng buộc `AUTO_INCREMENT`, `FOREIGN KEY`, `DEFAULT`, `CHECK`, `UNIQUE`).
 
 ---
 
 ## 📌 BÀI 2: TẠO BẢNG TRONG CSDL `QuanLyDiemThi` (SQL)
-
-File mã nguồn: [`quan_ly_diem_thi.sql`](./quan_ly_diem_thi.sql)
-
-```sql
-CREATE DATABASE IF NOT EXISTS QuanLyDiemThi;
-USE QuanLyDiemThi;
-
-CREATE TABLE IF NOT EXISTS HocSinh (
-    MaHS VARCHAR(20) PRIMARY KEY,
-    TenHS VARCHAR(50),
-    NgaySinh DATETIME,
-    Lop VARCHAR(20),
-    GT VARCHAR(20)
-);
-
-CREATE TABLE IF NOT EXISTS MonHoc (
-    MaMH VARCHAR(20) PRIMARY KEY,
-    TenMH VARCHAR(50),
-    MaGV VARCHAR(20)
-);
-
-CREATE TABLE IF NOT EXISTS BangDiem (
-    MaHS VARCHAR(20),
-    MaMH VARCHAR(20),
-    DiemThi INT,
-    NgayKT DATETIME,
-    PRIMARY KEY (MaHS, MaMH),
-    CONSTRAINT FK_BangDiem_HocSinh FOREIGN KEY (MaHS) REFERENCES HocSinh(MaHS),
-    CONSTRAINT FK_BangDiem_MonHoc FOREIGN KEY (MaMH) REFERENCES MonHoc(MaMH)
-);
-
-CREATE TABLE IF NOT EXISTS GiaoVien (
-    MaGV VARCHAR(20) PRIMARY KEY,
-    TenGV VARCHAR(50),
-    SDT VARCHAR(10)
-);
-
-ALTER TABLE MonHoc 
-ADD CONSTRAINT FK_MaGV FOREIGN KEY (MaGV) REFERENCES GiaoVien(MaGV);
-```
+File mã nguồn: [`quan_ly_diem_thi.sql`](./quan_ly_diem_thi.sql) (Bao gồm các bảng `HocSinh`, `GiaoVien`, `MonHoc`, `BangDiem`).
 
 ---
 
 ## 📌 BÀI 1: THIẾT KẾ SƠ ĐỒ ERD QUẢN LÝ ĐƠN ĐẶT HÀNG & PHIẾU GIAO HÀNG
-
-### Sơ đồ ERD chuẩn hóa:
-![ERD Simplified](./erd_step5_simplified.jpg)
+Hình ảnh sơ đồ ERD chuẩn hóa: [`erd_step5_simplified.jpg`](./erd_step5_simplified.jpg) & Giao diện tương tác: [`index.html`](./index.html).
 
 ---
 
-## 🚀 HƯỚNG DẪN LỆNH GIT
+## 🚀 LỆNH GIT ĐẨY BÀI LÊN GITHUB
 
 ```bash
 cd "c:\Users\Admin\OneDrive\Desktop\công việc\BAI_TAP"
 
 git add .
-git commit -m "Bo sung bai tap tao CSDL QuanLySinhVien"
+git commit -m "Hoan thanh bai thuc hanh Khung Hoang Tai Phong Kham HealthSync"
 git push origin main
 ```
