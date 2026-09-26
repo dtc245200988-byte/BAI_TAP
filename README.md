@@ -6,18 +6,24 @@ Link Repository GitHub: [https://github.com/dtc245200988-byte/BAI_TAP.git](https
 
 ---
 
-## 📌 BÀI 11: LUYỆN TẬP CÁC CÂU LỆNH TRUY VẤN NÂNG CAO CSDL `QuanLySinhVien`
+## 📌 BÀI 12: TRUY VẤN DỮ LIỆU CSDL `QuanLyBanHang` (SELECT & JOIN)
 
 ### 1. Mô tả bài toán
-Thực hiện các yêu cầu truy vấn lọc dữ liệu phức tạp và cập nhật dữ liệu trên CSDL **`QuanLySinhVien`**:
-- Tìm sinh viên có tên bắt đầu bằng ký tự `'h'` (`LIKE 'h%'`).
-- Tìm các lớp học khai giảng vào tháng 12 (`MONTH(StartDate) = 12`).
-- Tìm môn học có số tín chỉ trong khoảng 3 đến 5 (`Credit BETWEEN 3 AND 5`).
-- Cập nhật `ClassID = 2` cho sinh viên tên `'Hung'` (`UPDATE Student`).
-- Hiển thị bảng điểm gồm `StudentName`, `SubName`, `Mark`, sắp xếp theo điểm giảm dần (`ORDER BY Mark DESC, StudentName ASC`).
+Thực hiện chèn dữ liệu mẫu và viết các câu lệnh truy vấn dữ liệu trên CSDL **`QuanLyBanHang`**:
+- Chèn dữ liệu mẫu vào 4 bảng (`Customer`, `Order`, `Product`, `OrderDetail`).
+- Truy vấn danh sách hóa đơn (`oID`, `oDate`, `oTotalPrice`).
+- Truy vấn danh sách khách hàng đã mua hàng và danh sách sản phẩm tương ứng.
+- Truy vấn tên khách hàng chưa từng mua sản phẩm nào bằng kỹ thuật `LEFT JOIN ... WHERE oID IS NULL`.
+- Truy vấn mã hóa đơn, ngày bán và giá tiền từng hóa đơn bằng tổng giá bán: `SUM(odQTY * pPrice)`.
 
-### 2. Danh sách file nộp cho Bài 11:
-- 📄 **`luyen_tap_truy_van_quan_ly_sinh_vien.sql`**: Mã SQL DML thực thi 5 yêu cầu truy vấn & cập nhật dữ liệu.
+### 2. Danh sách file nộp cho Bài 12:
+- 📄 **`truy_van_quan_ly_ban_hang.sql`**: Mã SQL DML chèn dữ liệu và 4 câu lệnh truy vấn `SELECT` chi tiết.
+- 📄 **`quan_ly_ban_hang.sql`**: Mã nguồn tổng hợp đầy đủ từ khởi tạo CSDL, chèn dữ liệu đến truy vấn.
+
+---
+
+## 📌 BÀI 11: LUYỆN TẬP CÁC CÂU LỆNH TRUY VẤN NÂNG CAO CSDL `QuanLySinhVien`
+- 📄 `luyen_tap_truy_van_quan_ly_sinh_vien.sql`: Mã SQL DML lọc dữ liệu `LIKE`, `BETWEEN`, `MONTH` và `UPDATE`.
 
 ---
 
@@ -83,6 +89,6 @@ Hình ảnh sơ đồ ERD chuẩn hóa: [`erd_step5_simplified.jpg`](./erd_step5
 cd "c:\Users\Admin\OneDrive\Desktop\công việc\BAI_TAP"
 
 git add .
-git commit -m "Hoan thanh bai tap Luyen tap truy van nang cao QuanLySinhVien"
+git commit -m "Hoan thanh bai tap Truy van du lieu QuanLyBanHang"
 git push origin main
 ```
