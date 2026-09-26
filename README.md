@@ -1,36 +1,38 @@
 # TỔNG HỢP BÀI TẬP CƠ SỞ DỮ LIỆU & SQL (DATABASE PORTFOLIO)
 
-Repository lưu trữ toàn bộ các bài tập thực hành thiết kế mô hình ERD, chuẩn hóa cơ sở dữ liệu, tái cấu trúc hệ thống và lập trình SQL.
+Repository lưu trữ toàn bộ các bài tập thực hành thiết kế mô hình ERD, chuẩn hóa cơ sở dữ liệu, tái cấu trúc hệ thống, tối ưu hóa truy vấn JOIN và lập trình SQL.
 
 Link Repository GitHub: [https://github.com/dtc245200988-byte/BAI_TAP.git](https://github.com/dtc245200988-byte/BAI_TAP.git)
 
 ---
 
+## 📌 BÀI 10: TỐI ƯU TRUY VẤN JOIN & XỬ LÝ DỮ LIỆU THIẾU HỤT (FLASHMART)
+
+### 1. Mô tả bài toán & Giải pháp
+Tối ưu hóa các báo cáo SQL trên sàn thương mại điện tử **FlashMart** khắc phục tình trạng thất thoát dữ liệu do lạm dụng `INNER JOIN`:
+- **Báo cáo Marketing (Giữ toàn vẹn khách hàng)**: Sử dụng `LEFT JOIN` giữa `Customers` và `Orders` kết hợp `COUNT(o.order_id)` (thay vì `COUNT(*)`) để ghi nhận đúng 0 đơn hàng cho khách hàng chưa từng mua (Charlie).
+- **Báo cáo Kho vận (Sản phẩm ế - Anti-Join)**: Sử dụng kỹ thuật `LEFT JOIN` giữa `Products` và `Orders` kết hợp `WHERE o.order_id IS NULL` để lọc chính xác sản phẩm chưa bán ra (Keyboard 103).
+
+### 2. Danh sách file nộp cho Bài 10:
+- 📄 **`flashmart_reports.sql`**: Mã DDL tạo CSDL, chèn dữ liệu mẫu và 2 câu lệnh `SELECT` truy vấn đã tối ưu hóa.
+- 📝 **`join_analysis.md`**: Giải trình lý do dùng `COUNT(o.order_id)` (< 150 từ) & 3 câu trả lời vấn đáp với CDO.
+- 🤖 **`ai_prompt_log.md`**: Nhật ký sử dụng AI thảo luận về `LEFT JOIN`, `COUNT` với `NULL` và thuật toán Nested-Loop Join.
+
+---
+
 ## 📌 BÀI 9: TRUY VẤN DỮ LIỆU TỪ CSDL `QuanLySinhVien` (SELECT)
-
-### 1. Mô tả bài toán
-Viết các câu lệnh truy vấn `SELECT` để khai thác dữ liệu từ CSDL **`QuanLySinhVien`**:
-- Truy vấn danh sách tất cả học viên.
-- Truy vấn danh sách học viên đang theo học (`Status = true`).
-- Truy vấn danh sách môn học có tín chỉ `< 10`.
-- Truy vấn học viên thuộc lớp `A1` bằng phép `JOIN` bảng `Student` và `Class`.
-- Truy vấn điểm môn `CF` của học viên bằng phép `JOIN` 3 bảng `Student`, `Mark`, `Subject`.
-
-### 2. Danh sách file nộp cho Bài 9:
-- 📄 **`truy_van_quan_ly_sinh_vien.sql`**: Mã nguồn các câu lệnh `SELECT` truy vấn dữ liệu theo yêu cầu bài tập.
+- 📄 `truy_van_quan_ly_sinh_vien.sql`: Các câu lệnh `SELECT` lọc dữ liệu và `JOIN` nhiều bảng.
 
 ---
 
 ## 📌 BÀI 8: THÊM DỮ LIỆU VÀO CSDL `QuanLySinhVien` (INSERT INTO)
 - 📄 `them_du_lieu_quan_ly_sinh_vien.sql`: Mã SQL DML chèn dữ liệu mẫu vào 4 bảng.
-- 📄 `quan_ly_sinh_vien.sql`: File SQL tổng hợp CSDL & dữ liệu mẫu.
 
 ---
 
 ## 📌 BÀI 7: KHỦNG HOẢNG TẠI STARTUP AUTORIDE (SYSTEM RE-ENGINEERING)
 - 📄 `autoride_db.sql`: Schema, Trigger, DML & SELECT tính cọc hoàn lại.
-- 📝 `er_activity_mapping.md`: Phân tích `damage_fee` & 3 câu hỏi bảo vệ thiết kế.
-- 🤖 `ai_prompt_log.md`: Nhật ký thảo luận AI.
+- 📝 `er_activity_mapping.md`: Phân tích `damage_fee` & 3 câu trả lời vấn đáp.
 
 ---
 
@@ -73,6 +75,6 @@ Hình ảnh sơ đồ ERD chuẩn hóa: [`erd_step5_simplified.jpg`](./erd_step5
 cd "c:\Users\Admin\OneDrive\Desktop\công việc\BAI_TAP"
 
 git add .
-git commit -m "Hoan thanh bai tap Truy van du lieu bang SELECT CSDL QuanLySinhVien"
+git commit -m "Hoan thanh bai thuc hanh Toi uu truy van JOIN FlashMart"
 git push origin main
 ```
