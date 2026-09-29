@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Horizontal Dropdown Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #menu {
+            height: 40px;
+            background-color: #333;
+            border: 1px solid #222;
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #menu li {
+            float: left;
+            position: relative;
+        }
+
+        #menu li a {
+            display: block;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+        }
+
+        #menu li a:hover {
+            background-color: red;
+        }
+
+        #menu ul ul {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            visibility: hidden;
+            background-color: #444;
+            padding: 0;
+        }
+
+        #menu ul ul li {
+            float: none;
+        }
+
+        #menu li:hover > ul {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Sản phẩm</a>
+                <ul>
+                    <li><a href="#">Sản phẩm 1</a></li>
+                    <li><a href="#">Sản phẩm 2</a></li>
+                    <li><a href="#">Sản phẩm 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Dịch vụ</a>
+                <ul>
+                    <li><a href="#">Bảo hành</a></li>
+                    <li><a href="#">Sửa chữa</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Liên hệ</a></li>
+        </ul>
+    </div>
+</body>
+</html>
