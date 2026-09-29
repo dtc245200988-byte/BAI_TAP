@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Vertical Dropdown Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            position: relative;
+            width: 100px;
+            height: 30px;
+            padding: 0 20px;
+            background-color: black;
+            line-height: 30px;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+        }
+
+        li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        li:hover {
+            background-color: #555;
+        }
+
+        ul ul {
+            position: absolute;
+            top: 0;
+            left: 160px;
+            visibility: hidden;
+        }
+
+        li:hover > ul {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Sản phẩm</a>
+                <ul>
+                    <li><a href="#">Sản phẩm 1</a></li>
+                    <li><a href="#">Sản phẩm 2</a></li>
+                    <li><a href="#">Sản phẩm 3</a>
+                        <ul>
+                            <li><a href="#">Mục con 3.1</a></li>
+                            <li><a href="#">Mục con 3.2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">Liên hệ</a></li>
+        </ul>
+    </div>
+</body>
+</html>
