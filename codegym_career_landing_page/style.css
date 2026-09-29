@@ -1,0 +1,22 @@
+html,
+body {
+    height: 100%;
+}
+
+.bg-hero {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.primary-color {
+    background-color: #0d47a1 !important; /* MDB Blue */
+}
+
+.text-primary {
+    color: #0d47a1 !important;
+}
+
+.btn-primary {
+    background-color: #0d47a1 !important;
+}
