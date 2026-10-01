@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo"><i class="fab fa-facebook"></i></div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search Facebook">
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="nav-icon active"><i class="fas fa-home"></i></div>
+            <div class="nav-icon"><i class="fas fa-user-friends"></i></div>
+            <div class="nav-icon"><i class="fas fa-video"></i></div>
+            <div class="nav-icon"><i class="fas fa-store"></i></div>
+            <div class="nav-icon"><i class="fas fa-users"></i></div>
+        </div>
+        <div class="header-right">
+            <div class="icon-btn"><i class="fas fa-th"></i></div>
+            <div class="icon-btn"><i class="fab fa-facebook-messenger"></i></div>
+            <div class="icon-btn"><i class="fas fa-bell"></i></div>
+            <div class="profile-pic"></div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar left-sidebar">
+            <ul class="sidebar-menu">
+                <li><div class="profile-pic small"></div> <span class="text">User Name</span></li>
+                <li><i class="fas fa-user-friends text-blue"></i> <span class="text">Friends</span></li>
+                <li><i class="fas fa-clock text-blue"></i> <span class="text">Memories</span></li>
+                <li><i class="fas fa-bookmark text-purple"></i> <span class="text">Saved</span></li>
+                <li><i class="fas fa-users text-blue"></i> <span class="text">Groups</span></li>
+                <li><i class="fas fa-video text-blue"></i> <span class="text">Video</span></li>
+                <li><i class="fas fa-store text-blue"></i> <span class="text">Marketplace</span></li>
+                <li><i class="fas fa-calendar-alt text-red"></i> <span class="text">Events</span></li>
+                <li><i class="fas fa-chevron-down circle-icon"></i> <span class="text">See more</span></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="content">
+            <!-- Create Post -->
+            <div class="create-post">
+                <div class="create-post-top">
+                    <div class="profile-pic small"></div>
+                    <input type="text" placeholder="What's on your mind?">
+                </div>
+                <div class="create-post-bottom">
+                    <div class="action"><i class="fas fa-video text-red"></i> Live video</div>
+                    <div class="action"><i class="fas fa-images text-green"></i> Photo/video</div>
+                    <div class="action"><i class="far fa-smile text-yellow"></i> Feeling/activity</div>
+                </div>
+            </div>
+
+            <!-- Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="profile-pic small"></div>
+                    <div class="post-info">
+                        <h4>John Doe</h4>
+                        <span>2 hrs &middot; <i class="fas fa-globe-americas"></i></span>
+                    </div>
+                    <i class="fas fa-ellipsis-h dots"></i>
+                </div>
+                <div class="post-content">
+                    <p>Just enjoying a beautiful day! ☀️</p>
+                </div>
+                <div class="post-actions-stats">
+                    <span><i class="fas fa-thumbs-up text-blue"></i> 120</span>
+                    <span>12 Comments &middot; 3 Shares</span>
+                </div>
+                <div class="post-actions">
+                    <div class="action"><i class="far fa-thumbs-up"></i> Like</div>
+                    <div class="action"><i class="far fa-comment"></i> Comment</div>
+                    <div class="action"><i class="fas fa-share"></i> Share</div>
+                </div>
+            </div>
+            
+             <div class="post">
+                <div class="post-header">
+                    <div class="profile-pic small"></div>
+                    <div class="post-info">
+                        <h4>Jane Smith</h4>
+                        <span>5 hrs &middot; <i class="fas fa-globe-americas"></i></span>
+                    </div>
+                    <i class="fas fa-ellipsis-h dots"></i>
+                </div>
+                <div class="post-content">
+                    <p>Learning how to build web interfaces! It's so much fun! 🚀</p>
+                </div>
+                <div class="post-actions-stats">
+                    <span><i class="fas fa-thumbs-up text-blue"></i> <i class="fas fa-heart text-red"></i> 345</span>
+                    <span>45 Comments &middot; 10 Shares</span>
+                </div>
+                <div class="post-actions">
+                    <div class="action"><i class="far fa-thumbs-up"></i> Like</div>
+                    <div class="action"><i class="far fa-comment"></i> Comment</div>
+                    <div class="action"><i class="fas fa-share"></i> Share</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar right-sidebar">
+            <h4>Sponsored</h4>
+            <div class="sponsored-ad">
+                <div class="ad-image"></div>
+                <div class="ad-text">
+                    <strong>Learn Web Dev</strong>
+                    <span>Start coding today!</span>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="contacts-header">
+                <h4>Contacts</h4>
+                <div class="contact-icons">
+                    <i class="fas fa-video"></i>
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            <ul class="contacts-list">
+                <li><div class="profile-pic small relative"><span class="online-dot"></span></div> <span class="text">Alice Johnson</span></li>
+                <li><div class="profile-pic small relative"><span class="online-dot"></span></div> <span class="text">Bob Williams</span></li>
+                <li><div class="profile-pic small relative"><span class="online-dot"></span></div> <span class="text">Charlie Brown</span></li>
+                <li><div class="profile-pic small relative"><span class="online-dot"></span></div> <span class="text">Diana Prince</span></li>
+                <li><div class="profile-pic small relative"><span class="online-dot"></span></div> <span class="text">Eve Adams</span></li>
+            </ul>
+        </aside>
+    </main>
+</body>
+</html>
