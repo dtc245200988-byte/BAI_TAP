@@ -3,47 +3,692 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ Giản Lược</title>
+    <title>Facebook - Giao diện Giản Lược</title>
+    <!-- Font chữ & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1>Tiêu đề Trang Web</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Giới thiệu</a></li>
-                <li><a href="#">Dịch vụ</a></li>
-                <li><a href="#">Liên hệ</a></li>
-            </ul>
+
+    <!-- ==========================================
+         1. FIXED HEADER (CỐ ĐỊNH Ở TRÊN CÙNG)
+         ========================================== -->
+    <header class="fb-header" id="main-header">
+        <!-- Header Trái: Logo & Tìm kiếm -->
+        <div class="header-left">
+            <a href="#" class="fb-logo" title="Facebook">
+                <svg viewBox="0 0 36 36" fill="url(#fb-gradient)" width="40" height="40">
+                    <defs>
+                        <linearGradient id="fb-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#1877F2" />
+                            <stop offset="100%" stop-color="#0E5AC4" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.36 5.709 15.385 13.5 17.449v-12.34h-4.485V18H13.5v-3.882c0-4.428 2.637-6.872 6.671-6.872 1.933 0 3.955.345 3.955.345v4.349h-2.228c-2.195 0-2.88 1.362-2.88 2.76V18h4.899l-.783 5.109h-4.116v12.761z"/>
+                    <path fill="#ffffff" d="M24.116 23.109l.783-5.109h-4.899v-3.3c0-1.398.685-2.76 2.88-2.76h2.228V7.59s-2.022-.345-3.955-.345c-4.034 0-6.671 2.444-6.671 6.872V18H9.015v5.109H13.5v12.761c.821.127 1.658.193 2.509.193.842 0 1.67-.066 2.482-.191V23.109h5.625z"/>
+                </svg>
+            </a>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Tìm kiếm trên Facebook" id="search-input">
+            </div>
+        </div>
+
+        <!-- Header Giữa: Navigation Tabs -->
+        <nav class="header-middle">
+            <a href="#" class="nav-tab active" title="Trang chủ" data-tab="home">
+                <i class="fa-solid fa-house"></i>
+                <span class="nav-indicator"></span>
+            </a>
+            <a href="#" class="nav-tab" title="Bạn bè" data-tab="friends">
+                <i class="fa-solid fa-user-group"></i>
+                <span class="nav-indicator"></span>
+            </a>
+            <a href="#" class="nav-tab" title="Video" data-tab="watch">
+                <i class="fa-solid fa-tv"></i>
+                <span class="nav-indicator"></span>
+            </a>
+            <a href="#" class="nav-tab" title="Marketplace" data-tab="marketplace">
+                <i class="fa-solid fa-store"></i>
+                <span class="nav-indicator"></span>
+            </a>
+            <a href="#" class="nav-tab" title="Nhóm" data-tab="groups">
+                <i class="fa-solid fa-users-rectangle"></i>
+                <span class="nav-indicator"></span>
+            </a>
+            <a href="#" class="nav-tab" title="Trò chơi" data-tab="gaming">
+                <i class="fa-solid fa-gamepad"></i>
+                <span class="nav-indicator"></span>
+            </a>
         </nav>
+
+        <!-- Header Phải: Menu, Messenger, Thông báo & Profile -->
+        <div class="header-right">
+            <button class="circle-btn" title="Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <button class="circle-btn" title="Messenger">
+                <i class="fa-brands fa-facebook-messenger"></i>
+                <span class="badge">3</span>
+            </button>
+            <button class="circle-btn" title="Thông báo">
+                <i class="fa-solid fa-bell"></i>
+                <span class="badge">5</span>
+            </button>
+            <div class="user-profile-btn" title="Tài khoản cá nhân">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-sm">
+                <span class="status-dot"></span>
+            </div>
+        </div>
     </header>
 
-    <div class="page-container">
-        <aside class="sidebar left-sidebar">
-            <h3>Sidebar Trái</h3>
-            <ul>
-                <li>Mục 1</li>
-                <li>Mục 2</li>
-                <li>Mục 3</li>
-            </ul>
+    <!-- ==========================================
+         BỐ CỤC 3 CỘT (SIDEBAR TRÁI - NỘI DUNG CHÍNH - SIDEBAR PHẢI)
+         ========================================== -->
+    <div class="fb-main-container">
+
+        <!-- ==========================================
+             2. SIDEBAR TRÁI (LEFT SIDEBAR)
+             ========================================== -->
+        <aside class="sidebar left-sidebar" id="left-sidebar">
+            <div class="sidebar-content">
+                <!-- User Profile shortcut -->
+                <a href="#" class="sidebar-item user-item">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-md">
+                    <span class="item-text font-bold">Lương Thị Giang</span>
+                </a>
+
+                <!-- Navigation List -->
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-friends">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <span class="item-text">Bạn bè</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-memories">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <span class="item-text">Kỷ niệm</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-saved">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </div>
+                    <span class="item-text">Đã lưu</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-groups">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <span class="item-text">Nhóm</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-video">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </div>
+                    <span class="item-text">Video</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-market">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <span class="item-text">Marketplace</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-feeds">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </div>
+                    <span class="item-text">Bảng feed</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <div class="icon-wrap bg-events">
+                        <i class="fa-solid fa-calendar-star"></i>
+                    </div>
+                    <span class="item-text">Sự kiện</span>
+                </a>
+
+                <button class="sidebar-item see-more-btn" id="see-more-left">
+                    <div class="icon-wrap bg-more">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <span class="item-text">Xem thêm</span>
+                </button>
+
+                <div class="sidebar-divider"></div>
+
+                <!-- Lối tắt của bạn (Shortcuts) -->
+                <div class="sidebar-heading">
+                    <span>Lối tắt của bạn</span>
+                    <a href="#" class="edit-link">Chỉnh sửa</a>
+                </div>
+
+                <a href="#" class="sidebar-item shortcut-item">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=100&auto=format&fit=crop&q=80" alt="Code Group" class="shortcut-img">
+                    <span class="item-text">Lập trình Frontend & CSS Layout</span>
+                </a>
+
+                <a href="#" class="sidebar-item shortcut-item">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=100&auto=format&fit=crop&q=80" alt="CodeGym" class="shortcut-img">
+                    <span class="item-text">Cộng đồng Học viên CodeGym</span>
+                </a>
+
+                <a href="#" class="sidebar-item shortcut-item">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=100&auto=format&fit=crop&q=80" alt="UI UX" class="shortcut-img">
+                    <span class="item-text">UI/UX Designer Việt Nam</span>
+                </a>
+
+                <a href="#" class="sidebar-item shortcut-item">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=100&auto=format&fit=crop&q=80" alt="Database" class="shortcut-img">
+                    <span class="item-text">Cơ sở Dữ liệu & Tối ưu SQL</span>
+                </a>
+
+                <!-- Footer thông tin thu gọn -->
+                <div class="sidebar-footer">
+                    <p>Quyền riêng tư · Điều khoản · Quảng cáo · Lựa chọn quảng cáo · Cookie · Xem thêm · Meta © 2026</p>
+                </div>
+            </div>
         </aside>
 
-        <main class="main-content">
-            <h2>Nội dung chính của trang</h2>
-            <p>Đây là khu vực chứa nội dung quan trọng nhất của trang web. Chúng ta sẽ đặt các bài viết, sản phẩm, hoặc thông tin chi tiết tại đây.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, amet. Magnam, cumque. Repellendus, ea! Reprehenderit, quod. Ullam, quas. Dolorum, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, amet. Magnam, cumque. Repellendus, ea! Reprehenderit, quod. Ullam, quas. Dolorum, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, amet. Magnam, cumque. Repellendus, ea! Reprehenderit, quod. Ullam, quas. Dolorum, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, amet. Magnam, cumque. Repellendus, ea! Reprehenderit, quod. Ullam, quas. Dolorum, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, amet. Magnam, cumque. Repellendus, ea! Reprehenderit, quod. Ullam, quas. Dolorum, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo. Dolore, quod. Quos, nemo.</p>
+        <!-- ==========================================
+             3. PHẦN NỘI DUNG CHÍNH (MAIN CONTENT FEED)
+             ========================================== -->
+        <main class="main-content" id="main-content">
+            <div class="feed-wrapper">
+
+                <!-- 3.1. THANH TIN / STORIES & REELS -->
+                <section class="stories-container">
+                    <!-- Nút tạo tin -->
+                    <div class="story-card create-story">
+                        <div class="story-img-top">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Your avatar">
+                        </div>
+                        <div class="create-story-btn">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <span class="story-username">Tạo tin</span>
+                    </div>
+
+                    <!-- Story Card 1 -->
+                    <div class="story-card">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&auto=format&fit=crop&q=80" alt="Story 1" class="story-bg">
+                        <div class="story-avatar-wrap">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Avatar">
+                        </div>
+                        <span class="story-username">Thu Hà</span>
+                    </div>
+
+                    <!-- Story Card 2 -->
+                    <div class="story-card">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&auto=format&fit=crop&q=80" alt="Story 2" class="story-bg">
+                        <div class="story-avatar-wrap">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Avatar">
+                        </div>
+                        <span class="story-username">Minh Hoàng</span>
+                    </div>
+
+                    <!-- Story Card 3 -->
+                    <div class="story-card">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&auto=format&fit=crop&q=80" alt="Story 3" class="story-bg">
+                        <div class="story-avatar-wrap">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="Avatar">
+                        </div>
+                        <span class="story-username">Hoàng Nam</span>
+                    </div>
+
+                    <!-- Story Card 4 -->
+                    <div class="story-card">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300&auto=format&fit=crop&q=80" alt="Story 4" class="story-bg">
+                        <div class="story-avatar-wrap">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Avatar">
+                        </div>
+                        <span class="story-username">Thanh Trúc</span>
+                    </div>
+
+                    <button class="story-next-btn" title="Xem tiếp tin">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </section>
+
+                <!-- 3.2. HỘP TẠO BÀI VIẾT (CREATE POST BOX) -->
+                <section class="card create-post-card">
+                    <div class="create-post-top">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-md">
+                        <input type="text" id="post-input" placeholder="Giang ơi, bạn đang nghĩ gì thế?" autocomplete="off">
+                        <button id="btn-submit-post" class="btn-post" disabled>Đăng</button>
+                    </div>
+                    <div class="create-post-divider"></div>
+                    <div class="create-post-bottom">
+                        <button class="post-action-btn">
+                            <i class="fa-solid fa-video color-red"></i>
+                            <span>Video trực tiếp</span>
+                        </button>
+                        <button class="post-action-btn">
+                            <i class="fa-solid fa-images color-green"></i>
+                            <span>Ảnh/video</span>
+                        </button>
+                        <button class="post-action-btn">
+                            <i class="fa-solid fa-face-smile color-yellow"></i>
+                            <span>Cảm xúc/hoạt động</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 3.3. DANH SÁCH BÀI ĐĂNG (FEED POSTS) -->
+                <div class="posts-stream" id="posts-container">
+
+                    <!-- POST 1: Bài viết học tập / CodeGym -->
+                    <article class="card post-card" data-post-id="1">
+                        <!-- Post Header -->
+                        <div class="post-header">
+                            <div class="post-author-info">
+                                <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=100&auto=format&fit=crop&q=80" alt="Author" class="avatar-md">
+                                <div>
+                                    <div class="author-name-wrap">
+                                        <a href="#" class="author-name">CodeGym Academy</a>
+                                        <i class="fa-solid fa-circle-check verified-badge" title="Đã xác minh"></i>
+                                    </div>
+                                    <div class="post-meta">
+                                        <span>2 giờ trước</span>
+                                        <span class="dot-separator">·</span>
+                                        <i class="fa-solid fa-earth-americas" title="Công khai"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-options-btn">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+
+                        <!-- Post Content -->
+                        <div class="post-body">
+                            <p class="post-text">
+                                🎉 <strong>Thực hành thiết kế Web Layout với Fixed Header & Sidebar</strong><br>
+                                Chúc mừng các bạn học viên đã hoàn thiện bài tập thiết kế giao diện mô phỏng Facebook! Kỹ thuật sử dụng <code>position: fixed</code> kết hợp bố cục 3 cột (Flexbox/Grid) và xử lý thanh cuộn độc lập cho Sidebar là một trong những kiến thức nền tảng quan trọng nhất trong lập trình Frontend hiện đại. 💻🚀
+                            </p>
+                        </div>
+
+                        <!-- Post Media Image -->
+                        <div class="post-media">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80" alt="Coding workspace" class="post-img">
+                        </div>
+
+                        <!-- Post Reactions Stats -->
+                        <div class="post-stats">
+                            <div class="reactions-count">
+                                <span class="reaction-icons">
+                                    <span class="icon-like"><i class="fa-solid fa-thumbs-up"></i></span>
+                                    <span class="icon-heart"><i class="fa-solid fa-heart"></i></span>
+                                </span>
+                                <span class="stats-text like-count-text">248 người khác</span>
+                            </div>
+                            <div class="comments-shares-count">
+                                <span>36 bình luận</span>
+                                <span class="dot-separator">·</span>
+                                <span>12 lượt chia sẻ</span>
+                            </div>
+                        </div>
+
+                        <!-- Post Actions (Like, Comment, Share) -->
+                        <div class="post-actions">
+                            <button class="action-btn like-btn" onclick="toggleLike(this, 1)">
+                                <i class="fa-regular fa-thumbs-up"></i>
+                                <span>Thích</span>
+                            </button>
+                            <button class="action-btn comment-btn" onclick="focusComment(1)">
+                                <i class="fa-regular fa-message"></i>
+                                <span>Bình luận</span>
+                            </button>
+                            <button class="action-btn share-btn" onclick="showShareToast()">
+                                <i class="fa-solid fa-share"></i>
+                                <span>Chia sẻ</span>
+                            </button>
+                        </div>
+
+                        <!-- Post Comments Section -->
+                        <div class="comments-section">
+                            <!-- Comment item 1 -->
+                            <div class="comment-item">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-sm">
+                                <div class="comment-content-wrap">
+                                    <div class="comment-bubble">
+                                        <span class="comment-author">Nguyễn Hoàng Nam</span>
+                                        <p class="comment-text">Giao diện nhìn mượt mà và chuẩn chỉnh quá! Phần Header cố định ở trên cùng hoạt động rất tốt.</p>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span>Thích</span> · <span>Phản hồi</span> · <span class="comment-time">45 phút</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comment Input Form -->
+                            <div class="comment-input-box">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-sm">
+                                <div class="comment-input-wrapper">
+                                    <input type="text" placeholder="Viết bình luận công khai..." class="comment-input" onkeypress="handleCommentKeypress(event, 1)">
+                                    <div class="comment-input-icons">
+                                        <i class="fa-regular fa-face-smile"></i>
+                                        <i class="fa-solid fa-camera"></i>
+                                        <i class="fa-regular fa-image"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- POST 2: Bài viết status gradient -->
+                    <article class="card post-card" data-post-id="2">
+                        <div class="post-header">
+                            <div class="post-author-info">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-md">
+                                <div>
+                                    <a href="#" class="author-name">Lương Thị Giang</a>
+                                    <div class="post-meta">
+                                        <span>Vừa xong</span>
+                                        <span class="dot-separator">·</span>
+                                        <i class="fa-solid fa-earth-americas" title="Công khai"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-options-btn">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+
+                        <!-- Gradient Status Post -->
+                        <div class="post-gradient-box">
+                            <p>🌟 Đã hoàn thành xong bài tập thiết kế Fixed Header và Sidebar chuẩn phong cách Facebook! Cảm giác tự tay làm ra giao diện web mượt mà thật tuyệt vời! 🎯💯✨</p>
+                        </div>
+
+                        <!-- Post Stats -->
+                        <div class="post-stats">
+                            <div class="reactions-count">
+                                <span class="reaction-icons">
+                                    <span class="icon-heart"><i class="fa-solid fa-heart"></i></span>
+                                    <span class="icon-like"><i class="fa-solid fa-thumbs-up"></i></span>
+                                </span>
+                                <span class="stats-text like-count-text">59 người khác</span>
+                            </div>
+                            <div class="comments-shares-count">
+                                <span>8 bình luận</span>
+                            </div>
+                        </div>
+
+                        <!-- Post Actions -->
+                        <div class="post-actions">
+                            <button class="action-btn like-btn" onclick="toggleLike(this, 2)">
+                                <i class="fa-regular fa-thumbs-up"></i>
+                                <span>Thích</span>
+                            </button>
+                            <button class="action-btn comment-btn" onclick="focusComment(2)">
+                                <i class="fa-regular fa-message"></i>
+                                <span>Bình luận</span>
+                            </button>
+                            <button class="action-btn share-btn" onclick="showShareToast()">
+                                <i class="fa-solid fa-share"></i>
+                                <span>Chia sẻ</span>
+                            </button>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <div class="comments-section">
+                            <div class="comment-input-box">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-sm">
+                                <div class="comment-input-wrapper">
+                                    <input type="text" placeholder="Viết bình luận công khai..." class="comment-input" onkeypress="handleCommentKeypress(event, 2)">
+                                    <div class="comment-input-icons">
+                                        <i class="fa-regular fa-face-smile"></i>
+                                        <i class="fa-solid fa-camera"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- POST 3: Bài viết chia sẻ kinh nghiệm CSS -->
+                    <article class="card post-card" data-post-id="3">
+                        <div class="post-header">
+                            <div class="post-author-info">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-md">
+                                <div>
+                                    <div class="author-name-wrap">
+                                        <a href="#" class="author-name">Trần Minh Hoàng</a>
+                                        <span class="badge-group">trong <strong>Lập trình Frontend & CSS Layout</strong></span>
+                                    </div>
+                                    <div class="post-meta">
+                                        <span>4 giờ trước</span>
+                                        <span class="dot-separator">·</span>
+                                        <i class="fa-solid fa-users" title="Nhóm"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-options-btn">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+
+                        <div class="post-body">
+                            <p class="post-text">
+                                💡 <strong>Tips CSS khi xây dựng Fixed Header:</strong><br>
+                                1. Luôn khai báo <code>position: fixed; top: 0; left: 0; width: 100%;</code> cho header.<br>
+                                2. Đặt <code>z-index</code> đủ cao (ví dụ <code>z-index: 1000;</code>) để header luôn nổi lên trên nội dung khi cuộn trang.<br>
+                                3. Đừng quên thêm <code>padding-top</code> hoặc <code>margin-top</code> cho phần thân trang tương ứng với chiều cao của header để không bị đè mất nội dung trên cùng nhé!
+                            </p>
+                        </div>
+
+                        <div class="post-media">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80" alt="Code snippet" class="post-img">
+                        </div>
+
+                        <div class="post-stats">
+                            <div class="reactions-count">
+                                <span class="reaction-icons">
+                                    <span class="icon-like"><i class="fa-solid fa-thumbs-up"></i></span>
+                                    <span class="icon-heart"><i class="fa-solid fa-heart"></i></span>
+                                </span>
+                                <span class="stats-text like-count-text">142 người khác</span>
+                            </div>
+                            <div class="comments-shares-count">
+                                <span>19 bình luận</span>
+                                <span class="dot-separator">·</span>
+                                <span>7 lượt chia sẻ</span>
+                            </div>
+                        </div>
+
+                        <div class="post-actions">
+                            <button class="action-btn like-btn" onclick="toggleLike(this, 3)">
+                                <i class="fa-regular fa-thumbs-up"></i>
+                                <span>Thích</span>
+                            </button>
+                            <button class="action-btn comment-btn" onclick="focusComment(3)">
+                                <i class="fa-regular fa-message"></i>
+                                <span>Bình luận</span>
+                            </button>
+                            <button class="action-btn share-btn" onclick="showShareToast()">
+                                <i class="fa-solid fa-share"></i>
+                                <span>Chia sẻ</span>
+                            </button>
+                        </div>
+
+                        <div class="comments-section">
+                            <div class="comment-input-box">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="avatar-sm">
+                                <div class="comment-input-wrapper">
+                                    <input type="text" placeholder="Viết bình luận công khai..." class="comment-input" onkeypress="handleCommentKeypress(event, 3)">
+                                    <div class="comment-input-icons">
+                                        <i class="fa-regular fa-face-smile"></i>
+                                        <i class="fa-solid fa-camera"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
         </main>
 
-        <aside class="sidebar right-sidebar">
-            <h3>Sidebar Phải</h3>
-            <p>Đây là một sidebar khác, có thể chứa quảng cáo, bài viết liên quan hoặc các widget khác.</p>
+        <!-- ==========================================
+             4. SIDEBAR PHẢI (RIGHT SIDEBAR)
+             ========================================== -->
+        <aside class="sidebar right-sidebar" id="right-sidebar">
+            <div class="sidebar-content">
+                
+                <!-- Mục 1: Được tài trợ (Sponsored Ads) -->
+                <div class="sidebar-section">
+                    <span class="sidebar-section-title">Được tài trợ</span>
+                    
+                    <a href="https://codegym.vn" target="_blank" class="ad-card">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200&auto=format&fit=crop&q=80" alt="Ad 1" class="ad-img">
+                        <div class="ad-details">
+                            <span class="ad-title">Khóa học Lập trình Web Fullstack</span>
+                            <span class="ad-domain">codegym.vn</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="ad-card">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200&auto=format&fit=crop&q=80" alt="Ad 2" class="ad-img">
+                        <div class="ad-details">
+                            <span class="ad-title">Bộ công cụ UI/UX Design System 2026</span>
+                            <span class="ad-domain">designsystems.io</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <!-- Mục 2: Sinh nhật (Birthdays) -->
+                <div class="sidebar-section birthday-section">
+                    <span class="sidebar-section-title">Sinh nhật</span>
+                    <a href="#" class="birthday-card">
+                        <div class="birthday-icon-wrap">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </div>
+                        <span class="birthday-text">Hôm nay là sinh nhật của <strong>Trần Minh Hoàng</strong> và <strong>1 người khác</strong>.</span>
+                    </a>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <!-- Mục 3: Người liên hệ (Online Contacts) -->
+                <div class="sidebar-section contacts-section">
+                    <div class="contacts-header">
+                        <span class="sidebar-section-title">Người liên hệ</span>
+                        <div class="contact-tools">
+                            <i class="fa-solid fa-video" title="Cuộc gọi video mới"></i>
+                            <i class="fa-solid fa-magnifying-glass" title="Tìm kiếm người liên hệ"></i>
+                            <i class="fa-solid fa-ellipsis" title="Tùy chọn"></i>
+                        </div>
+                    </div>
+
+                    <ul class="contacts-list">
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Nguyễn Thu Hà</span>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Trần Minh Hoàng</span>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Lê Hoàng Nam</span>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Phạm Thanh Trúc</span>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Vũ Minh Đức</span>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Đỗ Quỳnh Anh</span>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Bùi Quốc Huy</span>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Contact" class="avatar-md">
+                                <span class="online-indicator"></span>
+                            </div>
+                            <span class="contact-name">Hoàng Yến Nhi</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <!-- Mục 4: Trò chuyện nhóm -->
+                <div class="sidebar-section group-chat-section">
+                    <span class="sidebar-section-title">Cuộc trò chuyện nhóm</span>
+                    <a href="#" class="sidebar-item shortcut-item">
+                        <div class="group-avatar-stack">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="item-text">Nhóm Học HTML/CSS CodeGym</span>
+                    </a>
+                    <a href="#" class="sidebar-item shortcut-item">
+                        <div class="group-avatar-stack">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <span class="item-text">Đội ngũ Database & SQL</span>
+                    </a>
+                </div>
+
+            </div>
         </aside>
+
     </div>
 
+    <!-- Toast thông báo tương tác -->
+    <div id="fb-toast" class="fb-toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-msg">Đã chia sẻ bài viết thành công!</span>
+    </div>
+
+    <!-- Tích hợp Javascript tương tác -->
+    <script src="script.js"></script>
 </body>
 </html>

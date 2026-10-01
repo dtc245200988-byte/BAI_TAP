@@ -1,102 +1,1210 @@
-/* Thiết lập cơ bản */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* ==========================================================================
+   CSS DESIGN SYSTEM: FACEBOOK SIMPLIFIED UI (FIXED HEADER & SIDEBARS)
+   ========================================================================== */
+
+/* 1. RESET & BIẾN TOÀN CỤC */
+:root {
+    --fb-primary: #1877F2;
+    --fb-primary-hover: #166fe5;
+    --fb-bg: #F0F2F5;
+    --fb-surface: #FFFFFF;
+    --fb-secondary-bg: #E4E6EB;
+    --fb-hover-bg: #F2F2F2;
+    --fb-text-primary: #050505;
+    --fb-text-secondary: #65676B;
+    --fb-divider: #CED0D4;
+    --fb-border: #E4E6EB;
+    --fb-badge-red: #E41E3F;
+    --fb-green: #31A24C;
+    --fb-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --fb-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+    --header-height: 56px;
+    --sidebar-width: 320px;
 }
 
-/* Header cố định */
-.main-header {
-    position: fixed; /* Đặt header cố định */
-    top: 0; /* Gắn vào cạnh trên của viewport */
-    left: 0; /* Gắn vào cạnh trái của viewport */
-    width: 100%; /* Chiếm toàn bộ chiều rộng */
-    background-color: #333;
-    color: white;
-    padding: 15px 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex; /* Dùng Flexbox để căn chỉnh nội dung bên trong */
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
-    box-sizing: border-box; /* Đảm bảo padding không làm width 100% bị lố màn hình */
-}
-
-.main-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.main-header nav ul {
-    list-style: none;
+* {
     margin: 0;
     padding: 0;
-    display: flex;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
 }
 
-.main-header nav ul li {
-    margin-left: 20px;
+body {
+    background-color: var(--fb-bg);
+    color: var(--fb-text-primary);
+    min-height: 100vh;
+    padding-top: var(--header-height); /* Đẩy nội dung xuống đúng bằng chiều cao Fixed Header */
+    overflow-x: hidden;
 }
 
-.main-header nav ul li a {
-    color: white;
+a {
     text-decoration: none;
-    font-weight: bold;
+    color: inherit;
 }
 
-/* Container cho bố cục chính (sidebar + nội dung) */
-.page-container {
-    display: flex; /* Kích hoạt Flexbox */
-    justify-content: space-between; /* Đặt khoảng trống giữa các phần tử con */
-    margin: 20px; /* Tạo khoảng cách xung quanh container */
-    gap: 20px; /* Khoảng cách giữa các cột */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
-.sidebar {
+ul {
+    list-style: none;
+}
+
+/* ==========================================================================
+   2. FIXED HEADER (CỐ ĐỊNH Ở TRÊN CÙNG)
+   ========================================================================== */
+.fb-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--fb-surface);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid var(--fb-border);
+    z-index: 1000; /* Đảm bảo luôn nổi trên mọi nội dung khi scroll */
+}
+
+/* Header Left: Logo & Search */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 280px;
+}
+
+.fb-logo {
+    display: flex;
+    align-items: center;
+    transition: transform 0.15s ease;
+}
+
+.fb-logo:hover {
+    transform: scale(1.04);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--fb-bg);
+    padding: 8px 14px;
+    border-radius: 50px;
+    gap: 10px;
+    width: 240px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.search-box:focus-within {
     background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    flex-shrink: 0; /* Ngăn sidebar bị co lại khi không đủ chỗ */
+    border-color: var(--fb-primary);
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+    width: 260px;
+}
+
+.search-icon {
+    color: var(--fb-text-secondary);
+    font-size: 15px;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 15px;
+    color: var(--fb-text-primary);
+    width: 100%;
+}
+
+.search-box input::placeholder {
+    color: var(--fb-text-secondary);
+}
+
+/* Header Middle: Tabs Navigation */
+.header-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 100%;
+    flex: 1;
+    max-width: 620px;
+}
+
+.nav-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    flex: 1;
+    color: var(--fb-text-secondary);
+    font-size: 22px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-tab:hover {
+    background-color: var(--fb-hover-bg);
+    color: var(--fb-primary);
+}
+
+.nav-tab.active {
+    color: var(--fb-primary);
+}
+
+.nav-indicator {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3.5px;
+    background-color: var(--fb-primary);
+    border-radius: 4px 4px 0 0;
+}
+
+.nav-tab.active .nav-indicator {
+    display: block;
+}
+
+/* Header Right: Actions & User Avatar */
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    min-width: 280px;
+}
+
+.circle-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--fb-secondary-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: var(--fb-text-primary);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.circle-btn:hover {
+    background-color: #D8DADF;
+    transform: scale(1.03);
+}
+
+.circle-btn .badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: var(--fb-badge-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 5.5px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+}
+
+.user-profile-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.user-profile-btn img {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--fb-green);
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   3. BỐ CỤC CHÍNH 3 CỘT (MAIN CONTAINER)
+   ========================================================================== */
+.fb-main-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+/* Common Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    padding: 12px 8px;
+    transition: scroll 0.3s ease;
+    z-index: 10;
 }
 
 .left-sidebar {
-    width: 200px; /* Chiều rộng cố định cho sidebar trái */
+    left: 0;
 }
 
 .right-sidebar {
-    width: 200px; /* Chiều rộng cố định cho sidebar phải */
+    right: 0;
 }
 
+/* Tùy chỉnh thanh cuộn Sidebar cho tinh tế */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.sidebar:hover::-webkit-scrollbar-thumb {
+    background-color: #bcc0c4;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: var(--fb-text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar-item:hover {
+    background-color: var(--fb-hover-bg);
+}
+
+.user-item .avatar-md {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.font-bold {
+    font-weight: 600;
+}
+
+/* Icon Wrap Styles */
+.icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.bg-friends { background: linear-gradient(135deg, #1877F2, #4facfe); }
+.bg-memories { background: linear-gradient(135deg, #00C6FF, #0072FF); }
+.bg-saved { background: linear-gradient(135deg, #B125EA, #8000FF); }
+.bg-groups { background: linear-gradient(135deg, #00A651, #25D366); }
+.bg-video { background: linear-gradient(135deg, #FF416C, #FF4B2B); }
+.bg-market { background: linear-gradient(135deg, #00C9FF, #92FE9D); color: #0072FF; }
+.bg-feeds { background: linear-gradient(135deg, #4A00E0, #8E2DE2); }
+.bg-events { background: linear-gradient(135deg, #F953C6, #B91D73); }
+.bg-more { background: var(--fb-secondary-bg); color: var(--fb-text-primary); }
+
+.sidebar-divider {
+    height: 1px;
+    background-color: var(--fb-border);
+    margin: 8px 12px;
+}
+
+.sidebar-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--fb-text-secondary);
+}
+
+.edit-link {
+    font-size: 14px;
+    color: var(--fb-primary);
+    font-weight: 400;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+.shortcut-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.sidebar-footer {
+    padding: 16px 12px;
+    font-size: 12px;
+    color: var(--fb-text-secondary);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   4. PHẦN NỘI DUNG CHÍNH (MAIN CONTENT FEED)
+   ========================================================================== */
 .main-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    flex-grow: 1; /* Cho phép nội dung chính chiếm hết không gian còn lại */
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    margin-right: var(--sidebar-width);
+    display: flex;
+    justify-content: center;
+    padding: 20px 24px;
+    min-height: calc(100vh - var(--header-height));
 }
 
-/* Các kiểu dáng phụ cho sidebar */
-.sidebar h3 {
-    margin-top: 0;
-    color: #333;
+.feed-wrapper {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+/* Card Style chung */
+.card {
+    background-color: var(--fb-surface);
+    border-radius: 8px;
+    box-shadow: var(--fb-shadow-sm);
+    padding: 12px 16px;
+    border: 1px solid var(--fb-border);
 }
 
-.sidebar ul li {
-    margin-bottom: 10px;
-    color: #555;
+/* 4.1. Stories & Reels Section */
+.stories-container {
+    display: flex;
+    gap: 8px;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* Đảm bảo trang có đủ chiều cao để cuộn */
-html {
+.story-card {
+    position: relative;
+    width: 110px;
+    height: 190px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--fb-shadow-sm);
+    transition: transform 0.2s ease, filter 0.2s ease;
+    flex-shrink: 0;
+    background-color: #000;
+}
+
+.story-card:hover {
+    transform: scale(1.02);
+    filter: brightness(1.05);
+}
+
+.story-bg {
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.88;
 }
-body {
-    min-height: 1500px; /* Đặt chiều cao tối thiểu để có thể cuộn trang */
-    padding-top: 70px; /* Đẩy nội dung xuống bằng chiều cao header */
+
+.story-avatar-wrap {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3.5px solid var(--fb-primary);
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story-username {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Create Story Card */
+.create-story {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-story .story-img-top {
+    height: 135px;
+    overflow: hidden;
+}
+
+.create-story .story-img-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.create-story:hover .story-img-top img {
+    transform: scale(1.08);
+}
+
+.create-story-btn {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    background-color: var(--fb-primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff;
+    font-size: 15px;
+}
+
+.create-story .story-username {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--fb-text-primary);
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow: none;
+}
+
+.story-next-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--fb-text-secondary);
+    transition: background 0.2s, transform 0.2s;
+    z-index: 5;
+}
+
+.story-next-btn:hover {
+    background-color: var(--fb-hover-bg);
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* 4.2. Create Post Card */
+.create-post-card {
+    padding: 12px 16px;
+}
+
+.create-post-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-md {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.create-post-top input {
+    flex: 1;
+    background-color: var(--fb-bg);
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    border-radius: 25px;
+    font-size: 15px;
+    color: var(--fb-text-primary);
+    transition: background-color 0.2s;
+}
+
+.create-post-top input:hover {
+    background-color: var(--fb-secondary-bg);
+}
+
+.btn-post {
+    padding: 8px 18px;
+    background-color: var(--fb-primary);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.btn-post:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.create-post-divider {
+    height: 1px;
+    background-color: var(--fb-border);
+    margin: 10px 0;
+}
+
+.create-post-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    color: var(--fb-text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+}
+
+.post-action-btn:hover {
+    background-color: var(--fb-hover-bg);
+}
+
+.color-red { color: #F3425F; font-size: 18px; }
+.color-green { color: #45BD62; font-size: 18px; }
+.color-yellow { color: #F7B125; font-size: 18px; }
+
+/* 4.3. Feed Post Cards */
+.posts-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.post-card {
+    padding: 12px 0 6px 0;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 10px 16px;
+}
+
+.post-author-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.author-name-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--fb-text-primary);
+}
+
+.author-name:hover {
+    text-decoration: underline;
+}
+
+.verified-badge {
+    color: var(--fb-primary);
+    font-size: 13px;
+}
+
+.post-meta {
+    font-size: 13px;
+    color: var(--fb-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 1px;
+}
+
+.dot-separator {
+    font-weight: bold;
+}
+
+.badge-group {
+    font-size: 13px;
+    color: var(--fb-text-secondary);
+    font-weight: 400;
+}
+
+.post-options-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fb-text-secondary);
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.post-options-btn:hover {
+    background-color: var(--fb-hover-bg);
+}
+
+.post-body {
+    padding: 0 16px 12px 16px;
+}
+
+.post-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--fb-text-primary);
+}
+
+.post-text code {
+    background-color: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+    color: #c7254e;
+}
+
+.post-media {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.post-img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Gradient Status Card */
+.post-gradient-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 40px 24px;
+    margin-bottom: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+}
+
+.post-gradient-box p {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Post Stats & Reactions */
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 16px 8px 16px;
+    font-size: 14px;
+    color: var(--fb-text-secondary);
+    border-bottom: 1px solid var(--fb-border);
+}
+
+.reactions-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.reaction-icons {
+    display: flex;
+    align-items: center;
+}
+
+.icon-like, .icon-heart {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 10px;
+    border: 1.5px solid #fff;
+}
+
+.icon-like {
+    background-color: var(--fb-primary);
+    z-index: 2;
+}
+
+.icon-heart {
+    background-color: #FB3C56;
+    margin-left: -5px;
+    z-index: 1;
+}
+
+.comments-shares-count {
+    display: flex;
+    gap: 6px;
+}
+
+/* Post Actions (Like, Comment, Share) */
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 16px;
+    border-bottom: 1px solid var(--fb-border);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 4px;
+    color: var(--fb-text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--fb-hover-bg);
+}
+
+.action-btn.liked {
+    color: var(--fb-primary);
+}
+
+.action-btn.liked i {
+    font-weight: 900;
+    animation: thumbBounce 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes thumbBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.35) rotate(-10deg); }
+    100% { transform: scale(1); }
+}
+
+/* Comments Section */
+.comments-section {
+    padding: 10px 16px 4px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.comment-item {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.comment-content-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-bubble {
+    background-color: var(--fb-bg);
+    padding: 8px 12px;
+    border-radius: 16px;
+    display: inline-block;
+    max-width: 500px;
+}
+
+.comment-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--fb-text-primary);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: var(--fb-text-primary);
+    line-height: 1.4;
+}
+
+.comment-actions {
+    font-size: 12px;
+    color: var(--fb-text-secondary);
+    margin-top: 3px;
+    margin-left: 8px;
+}
+
+.comment-actions span {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.comment-actions span:hover {
+    text-decoration: underline;
+}
+
+.comment-input-box {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.comment-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--fb-bg);
+    border-radius: 20px;
+    padding: 6px 12px;
+}
+
+.comment-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: var(--fb-text-primary);
+}
+
+.comment-input-icons {
+    display: flex;
+    gap: 8px;
+    color: var(--fb-text-secondary);
+    font-size: 16px;
+}
+
+.comment-input-icons i {
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.comment-input-icons i:hover {
+    color: var(--fb-text-primary);
+}
+
+/* ==========================================================================
+   5. SIDEBAR PHẢI (RIGHT SIDEBAR)
+   ========================================================================== */
+.sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--fb-text-secondary);
+    padding: 0 8px;
+}
+
+/* Sponsored Ads */
+.ad-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+}
+
+.ad-card:hover {
+    background-color: var(--fb-hover-bg);
+}
+
+.ad-img {
+    width: 100px;
+    height: 65px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ad-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ad-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fb-text-primary);
+    line-height: 1.3;
+}
+
+.ad-domain {
+    font-size: 12px;
+    color: var(--fb-text-secondary);
+}
+
+/* Birthday Section */
+.birthday-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+}
+
+.birthday-card:hover {
+    background-color: var(--fb-hover-bg);
+}
+
+.birthday-icon-wrap {
+    font-size: 24px;
+    color: var(--fb-primary);
+    flex-shrink: 0;
+}
+
+.birthday-text {
+    font-size: 14px;
+    color: var(--fb-text-primary);
+    line-height: 1.4;
+}
+
+/* Contacts List */
+.contacts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.contact-tools {
+    display: flex;
+    gap: 14px;
+    color: var(--fb-text-secondary);
+    font-size: 14px;
+}
+
+.contact-tools i {
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.contact-tools i:hover {
+    color: var(--fb-text-primary);
+}
+
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.contact-item:hover {
+    background-color: var(--fb-hover-bg);
+}
+
+.contact-avatar-wrap {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.contact-avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 9px;
+    height: 9px;
+    background-color: var(--fb-green);
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.contact-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fb-text-primary);
+}
+
+.group-avatar-stack {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #e4e6eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fb-text-secondary);
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   6. TOAST NOTIFICATION
+   ========================================================================== */
+.fb-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background-color: #242526;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    font-size: 14px;
+    font-weight: 500;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    z-index: 2000;
+}
+
+.fb-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.fb-toast i {
+    color: var(--fb-green);
+    font-size: 18px;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1180px) {
+    .right-sidebar {
+        display: none; /* Thu gọn sidebar phải trên màn hình vừa */
+    }
+    .main-content {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .left-sidebar {
+        display: none; /* Thu gọn sidebar trái trên tablet nhỏ / mobile */
+    }
+    .main-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 12px 8px;
+    }
+    .header-left {
+        min-width: auto;
+    }
+    .search-box {
+        width: 40px;
+        padding: 10px;
+        justify-content: center;
+    }
+    .search-box input {
+        display: none;
+    }
+    .header-right {
+        min-width: auto;
+    }
 }

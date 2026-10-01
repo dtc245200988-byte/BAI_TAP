@@ -1,36 +1,56 @@
-# TỔNG HỢP BÀI TẬP CƠ SỞ DỮ LIỆU & SQL (DATABASE PORTFOLIO)
+# TỔNG HỢP BÀI TẬP LẬP TRÌNH & CƠ SỞ DỮ LIỆU (PORTFOLIO)
 
-Repository lưu trữ toàn bộ các bài tập thực hành thiết kế mô hình ERD, chuẩn hóa cơ sở dữ liệu, tái cấu trúc hệ thống, tối ưu hóa truy vấn JOIN và lập trình SQL.
+Repository lưu trữ toàn bộ các bài tập thực hành thiết kế giao diện Web (HTML/CSS/JS Layout), thiết kế mô hình ERD, chuẩn hóa cơ sở dữ liệu, tái cấu trúc hệ thống, tối ưu hóa truy vấn JOIN, tối ưu chỉ mục B-Tree Index và lập trình SQL.
 
 Link Repository GitHub: [https://github.com/dtc245200988-byte/BAI_TAP.git](https://github.com/dtc245200988-byte/BAI_TAP.git)
 
 ---
 
+## 📌 BÀI TẬP FRONTEND: THIẾT KẾ GIAO DIỆN FACEBOOK (FIXED HEADER & SIDEBAR)
+
+### 1. Mục tiêu & Mô tả
+Thiết kế giao diện giản lược của Facebook đáp ứng các yêu cầu:
+- **Fixed Header ở trên cùng**: Cố định hoàn toàn trên viewport với `position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;`, chứa Logo Facebook, ô tìm kiếm thông minh, thanh điều hướng Tabs trung tâm và các nút tiện ích (Menu, Messenger, Thông báo, Avatar).
+- **Các phần Sidebar**:
+  - **Left Sidebar**: Cố định hoặc cuộn độc lập, gồm Trang cá nhân, Bạn bè, Kỷ niệm, Đã lưu, Nhóm, Video, Marketplace, Lối tắt và nút Xem thêm.
+  - **Right Sidebar**: Cố định bên phải, gồm mục Được tài trợ (Quảng cáo), Sinh nhật, Danh bạ bạn bè trực tuyến (với trạng thái chấm xanh Online) và Cuộc trò chuyện nhóm.
+- **Phần nội dung chính (Main Content)**: Căn giữa, cuộn nội dung mượt mà, bao gồm Thanh Tin/Stories, Hộp tạo bài viết nhanh và Danh sách các bài đăng (Feed Posts) tương tác sinh động.
+
+### 2. Danh sách file nộp:
+- 📄 [`fixed_header_layout/index.html`](./fixed_header_layout/index.html): Mã nguồn HTML5 chuẩn ngữ nghĩa.
+- 🎨 [`fixed_header_layout/style.css`](./fixed_header_layout/style.css): Bộ stylesheet CSS hiện đại, màu sắc chuẩn Facebook, Flexbox layout và hiệu ứng tương tác.
+- ⚡ [`fixed_header_layout/script.js`](./fixed_header_layout/script.js): Xử lý tương tác Tabs, Đăng bài mới, Like bài viết và Thêm bình luận theo thời gian thực.
+
+---
+
+## 📌 BÀI 13: TỐI ƯU HÓA HIỆU NĂNG TRUY VẤN VÀ B-TREE INDEX (PAYFLOW)
+
+### 1. Mô tả bài toán & Giải pháp
+Khắc phục sự cố sập server Ví điện tử **PayFlow** do truy vấn báo cáo của Kế toán chạy mất 45 giây và làm vọt CPU lên 100%:
+- **Loại bỏ truy vấn Non-SARGable**: Thay thế `YEAR(created_at) = 2026 AND MONTH(created_at) = 6` bằng phép so sánh khoảng thời gian chuẩn SARGable: `created_at >= '2026-06-01 00:00:00' AND created_at < '2026-07-01 00:00:00'`.
+- **Tạo Composite B-Tree Index**: Khai báo `CREATE INDEX idx_type_date ON Transactions(transaction_type, created_at)`.
+- **Kết quả EXPLAIN**: Chuyển chỉ số `type` từ `ALL` (Full Table Scan) sang `range` / `ref`, giảm số dòng quét từ 5.000.000 dòng xuống vài nghìn dòng, thời gian thực thi giảm từ 45 giây xuống vài miligiây.
+
+### 2. Danh sách file nộp cho Bài 13:
+- 📄 **`payflow_optimized.sql`**: Mã DDL tạo bảng, Composite Index, truy vấn legacy EXPLAIN và truy vấn SARGable EXPLAIN đã tối ưu.
+- 📝 **`explain_analysis.md`**: Báo cáo so sánh các chỉ số EXPLAIN trước & sau khi tối ưu (< 200 từ) và 3 câu trả lời vấn đáp với CTO.
+- 🤖 **`ai_prompt_log.md`**: Nhật ký sử dụng AI thảo luận về SARGable, thứ tự cột trong Composite Index và EXPLAIN profiling.
+
+---
+
 ## 📌 BÀI 12: TRUY VẤN DỮ LIỆU CSDL `QuanLyBanHang` (SELECT & JOIN)
-
-### 1. Mô tả bài toán
-Thực hiện chèn dữ liệu mẫu và viết các câu lệnh truy vấn dữ liệu trên CSDL **`QuanLyBanHang`**:
-- Chèn dữ liệu mẫu vào 4 bảng (`Customer`, `Order`, `Product`, `OrderDetail`).
-- Truy vấn danh sách hóa đơn (`oID`, `oDate`, `oTotalPrice`).
-- Truy vấn danh sách khách hàng đã mua hàng và danh sách sản phẩm tương ứng.
-- Truy vấn tên khách hàng chưa từng mua sản phẩm nào bằng kỹ thuật `LEFT JOIN ... WHERE oID IS NULL`.
-- Truy vấn mã hóa đơn, ngày bán và giá tiền từng hóa đơn bằng tổng giá bán: `SUM(odQTY * pPrice)`.
-
-### 2. Danh sách file nộp cho Bài 12:
-- 📄 **`truy_van_quan_ly_ban_hang.sql`**: Mã SQL DML chèn dữ liệu và 4 câu lệnh truy vấn `SELECT` chi tiết.
-- 📄 **`quan_ly_ban_hang.sql`**: Mã nguồn tổng hợp đầy đủ từ khởi tạo CSDL, chèn dữ liệu đến truy vấn.
+- 📄 `truy_van_quan_ly_ban_hang.sql`: DML chèn dữ liệu mẫu và 4 câu lệnh truy vấn `SELECT`.
 
 ---
 
 ## 📌 BÀI 11: LUYỆN TẬP CÁC CÂU LỆNH TRUY VẤN NÂNG CAO CSDL `QuanLySinhVien`
-- 📄 `luyen_tap_truy_van_quan_ly_sinh_vien.sql`: Mã SQL DML lọc dữ liệu `LIKE`, `BETWEEN`, `MONTH` và `UPDATE`.
+- 📄 `luyen_tap_truy_van_quan_ly_sinh_vien.sql`: Lọc dữ liệu `LIKE`, `BETWEEN`, `MONTH` và `UPDATE`.
 
 ---
 
 ## 📌 BÀI 10: TỐI ƯU TRUY VẤN JOIN & XỬ LÝ DỮ LIỆU THIẾU HỤT (FLASHMART)
 - 📄 `flashmart_reports.sql`: Mã DDL, DML & 2 câu lệnh `SELECT` đã tối ưu hóa.
 - 📝 `join_analysis.md`: Giải trình `COUNT(o.order_id)` & 3 câu trả lời vấn đáp với CDO.
-- 🤖 `ai_prompt_log.md`: Nhật ký thảo luận AI.
 
 ---
 
@@ -52,7 +72,6 @@ Thực hiện chèn dữ liệu mẫu và viết các câu lệnh truy vấn d�
 
 ## 📌 BÀI 6: XÂY DỰNG CƠ SỞ DỮ LIỆU `QuanLyBanHang` (SQL)
 - 📄 `quan_ly_ban_hang.sql`: Mã DDL 4 bảng (`Customer`, `Order`, `Product`, `OrderDetail`) & DML.
-- 📝 `quan_ly_ban_hang_report.md`: Báo cáo thiết kế CSDL.
 
 ---
 
@@ -89,6 +108,6 @@ Hình ảnh sơ đồ ERD chuẩn hóa: [`erd_step5_simplified.jpg`](./erd_step5
 cd "c:\Users\Admin\OneDrive\Desktop\công việc\BAI_TAP"
 
 git add .
-git commit -m "Hoan thanh bai tap Truy van du lieu QuanLyBanHang"
+git commit -m "Hoan thanh bai thuc hanh Toi uu truy van SQL PayFlow"
 git push origin main
 ```

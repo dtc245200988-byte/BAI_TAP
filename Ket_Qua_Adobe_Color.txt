@@ -1,0 +1,12 @@
+YÊU CẦU NỘP BÀI THỰC HÀNH ADOBE COLOR
+
+1. Công cụ sử dụng: Adobe Color (https://color.adobe.com/)
+2. Quy tắc màu đã chọn: Analogous (Tương đồng - Các màu sắc liên tục nhau trên Color Wheel)
+3. Các mã màu (HEX) đã tạo:
+   - Màu 1: #F2C572
+   - Màu 2: #F28705
+   - Màu 3: #D95204
+   - Màu 4: #8C1F03
+   - Màu 5: #400D01
+
+* Ghi chú: Để lấy ảnh chụp màn hình nộp bài, bạn hãy mở file Ket_Qua_Adobe_Color.html (cùng thư mục) trên trình duyệt và chụp lại giao diện là được!
