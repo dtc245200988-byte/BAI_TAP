@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeChronicle - Art Magazine</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS tùy chỉnh cho layout đặc thù -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        
+        <!-- VÙNG 1: Thanh tác giả (Sử dụng Flexbox Utilities của Bootstrap) -->
+        <!-- Đã dọn sạch float, dùng d-flex, align-items-center, justify-content-between để dàn trải linh hoạt -->
+        <div class="author-section d-flex align-items-center justify-content-between flex-wrap border-bottom pb-3 mb-4 gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <!-- Avatar không còn float -->
+                <div class="author-avatar bg-secondary rounded-circle" style="width: 60px; height: 60px; flex-shrink: 0;"></div>
+                <div class="author-details">
+                    <h5 class="mb-0">Jane Doe</h5>
+                    <small class="text-muted">Published on Oct 25, 2026</small>
+                </div>
+            </div>
+            <!-- Nút Share tự động dồn về cuối -->
+            <div class="share-buttons">
+                <button class="btn btn-outline-primary btn-sm me-2">Share Facebook</button>
+                <button class="btn btn-outline-info btn-sm">Tweet</button>
+            </div>
+        </div>
+        
+        <!-- VÙNG 2: Thư viện ảnh (Sử dụng CSS Grid trong file style.css) -->
+        <!-- Đã dọn sạch position: absolute và height: 400px -->
+        <div class="mosaic-gallery mb-4">
+            <div class="photo-main rounded shadow-sm d-flex align-items-center justify-content-center text-dark fw-bold h5 mb-0">Main Photo</div>
+            <div class="photo-sub-1 rounded shadow-sm d-flex align-items-center justify-content-center text-dark fw-bold h5 mb-0">Sub Photo 1</div>
+            <div class="photo-sub-2 rounded shadow-sm d-flex align-items-center justify-content-center text-dark fw-bold h5 mb-0">Sub Photo 2</div>
+        </div>
+
+        <p class="lead mb-5 text-justify" style="line-height: 1.8;">Đây là nội dung bài báo. Trước đây, khi Gallery co bóp trên mobile, đoạn text này bị đè lên một cách thảm họa do <code>absolute positioning</code>. Giờ đây, với <strong>CSS Grid</strong>, chiều cao khối ảnh được tính toán linh động nằm bên trong luồng tài liệu (normal flow), đẩy nội dung văn bản này xuống một cách mượt mà và an toàn, giải quyết triệt để vấn đề che khuất nội dung.</p>
+        
+        <!-- VÙNG 3: Bài viết liên quan (Sử dụng Bootstrap Grid System 12 cột) -->
+        <h3 class="mb-4">Recommended Articles</h3>
+        <div class="row g-4 mb-5">
+            <!-- Tự động: Mobile (col-12) -> Tablet (col-md-6) -> Desktop (col-lg-3) -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Article 1</h5>
+                        <p class="card-text text-muted">Góc nhìn nghệ thuật đương đại và những chuyển biến tinh tế của thị giác.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Article 2</h5>
+                        <p class="card-text text-muted">Góc nhìn nghệ thuật đương đại và những chuyển biến tinh tế của thị giác.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Article 3</h5>
+                        <p class="card-text text-muted">Góc nhìn nghệ thuật đương đại và những chuyển biến tinh tế của thị giác.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Article 4</h5>
+                        <p class="card-text text-muted">Góc nhìn nghệ thuật đương đại và những chuyển biến tinh tế của thị giác.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

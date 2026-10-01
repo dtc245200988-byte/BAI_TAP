@@ -1,0 +1,41 @@
+/* CSS Grid cho Mosaic Gallery */
+.mosaic-gallery {
+    display: grid;
+    /* Chia 3 phần: cột 1 chiếm 2 phần, cột 2 chiếm 1 phần */
+    grid-template-columns: 2fr 1fr; 
+    grid-auto-rows: 220px; /* Định nghĩa chiều cao mặc định cho các hàng */
+    gap: 15px; /* Khoảng cách giữa các ảnh thay thế cho margin/padding lộn xộn */
+}
+
+.photo-main {
+    background-color: #ffb3b3;
+    /* Chiếm 2 hàng */
+    grid-row: span 2;
+    background-size: cover;
+    background-position: center;
+}
+
+.photo-sub-1 {
+    background-color: #b3d9ff;
+    background-size: cover;
+    background-position: center;
+}
+
+.photo-sub-2 {
+    background-color: #b3ffb3;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Responsive Breakpoint cho Mobile */
+@media (max-width: 768px) {
+    .mosaic-gallery {
+        /* Chuyển thành 1 cột duy nhất xếp dọc */
+        grid-template-columns: 1fr; 
+        grid-auto-rows: 250px;
+    }
+    .photo-main {
+        /* Hủy việc chiếm 2 hàng trên điện thoại để các ảnh nằm nối tiếp nhau */
+        grid-row: span 1; 
+    }
+}
