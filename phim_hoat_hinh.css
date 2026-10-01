@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* 2. Mức trung bình: header giữ cố định (sticky) */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.header {
+    padding: 20px 5%;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.text-black {
+    color: #333;
+}
+
+.text-red-box {
+    background-color: #e62117;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin: 0 2px;
+}
+
+.text-red {
+    color: #e62117;
+}
+
+.head-link {
+    padding: 15px 5%;
+    text-align: center;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #999;
+}
+
+/* 2. Mức trung bình: bỏ gạch chân, bôi đậm, đổi màu khi hover */
+.head-link a {
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
+    margin: 0 10px;
+}
+
+.head-link a:hover {
+    font-weight: bold;
+    color: #e62117;
+}
+
+/* Container chính */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+    gap: 25px;
+}
+
+/* Left Content - Danh sách video */
+.left-content {
+    flex: 0 0 320px; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.video-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.video-info {
+    font-size: 13px;
+}
+
+.video-title {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.video-title:hover {
+    color: #e62117;
+    text-decoration: underline;
+}
+
+.video-views, .video-author {
+    color: #666;
+    margin-bottom: 2px;
+    font-size: 12px;
+}
+
+/* Right Content - Video đang xem */
+.right-content {
+    flex: 1; 
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.video-player {
+    margin-bottom: 20px;
+}
+
+.main-video-details {
+    padding: 10px 0;
+}
+
+.main-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.main-views, .main-author {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.main-description {
+    margin-top: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    color: #666;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+}
+
+/* 3. Mức nâng cao: Responsive */
+@media screen and (max-width: 992px) {
+    .container {
+        flex-direction: column-reverse; 
+    }
+    
+    .left-content {
+        flex: 1;
+        width: 100%;
+    }
+    
+    .video-item {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .video-item img {
+        width: 180px;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .video-item {
+        flex-direction: column;
+    }
+    .video-item img {
+        width: 100%;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+    
+    .head-link a {
+        display: block;
+        margin: 10px 0;
+    }
+    .head-link {
+        color: transparent; /* Ẩn dấu | trên mobile */
+    }
+}
