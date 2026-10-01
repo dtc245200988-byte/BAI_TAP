@@ -1,0 +1,54 @@
+/* NAVBAR (Flexbox) */
+.good-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #333;
+    color: white;
+    padding: 15px 20px;
+    gap: 15px; /* Sử dụng gap thay vì margin */
+}
+
+.good-navbar .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* DASHBOARD (CSS Grid) */
+.grid-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px; /* Chiều cao cơ bản cho các hàng */
+    gap: 20px; /* Gap hỗ trợ cho Grid */
+}
+
+.widget {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Flexbox cho thành phần chi tiết bên trong */
+    text-align: center;
+}
+
+.widget-large {
+    grid-column: span 2; /* Chiếm 2 cột */
+    grid-row: span 2;    /* Chiếm 2 hàng */
+    background: #e9ecef;
+}
+
+/* Responsive Dashboard trên Mobile */
+@media (max-width: 768px) {
+    .grid-dashboard {
+        grid-template-columns: 1fr; /* 1 cột trên mobile */
+        grid-auto-rows: minmax(150px, auto);
+    }
+    
+    .widget-large {
+        grid-column: span 1; /* Hủy span cột trên mobile */
+        grid-row: span 1;
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetricsHub Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar: Chuyển sang Flexbox -->
+    <div class="good-navbar">
+        <div class="logo">Logo</div>
+        <div class="nav-links">Home | About | VeryLongGermanWordForDashboard | Contact</div>
+        <div class="profile">Profile</div>
+    </div>
+
+    <!-- Dashboard: Chuyển sang CSS Grid, loại bỏ .column -->
+    <div class="container my-5">
+        <h2 class="mb-4">Bento Dashboard</h2>
+        <div class="grid-dashboard">
+            <div class="widget widget-large">Chart A (Cần span 2 hàng, 2 cột)</div>
+            <div class="widget">Chart B</div>
+            <div class="widget">Chart C</div>
+            <div class="widget">Chart D</div>
+            <div class="widget">Chart E</div>
+        </div>
+    </div>
+
+    <!-- Pricing: Chuyển sang Bootstrap Grid -->
+    <div class="container my-5">
+        <h2 class="mb-4 text-center">Bảng giá</h2>
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Cơ bản</h5>
+                        <p class="card-text">Dành cho người mới bắt đầu.</p>
+                        <a href="#" class="btn btn-primary">Chọn gói</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Nâng cao</h5>
+                        <p class="card-text">Dành cho cá nhân chuyên nghiệp.</p>
+                        <a href="#" class="btn btn-primary">Chọn gói</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Doanh nghiệp</h5>
+                        <p class="card-text">Dành cho tổ chức, công ty lớn.</p>
+                        <a href="#" class="btn btn-primary">Chọn gói</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
