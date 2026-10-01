@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Responsive Gallery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .gallery-item {
+            margin-bottom: 30px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Responsive Image Gallery</h2>
+        
+        <div class="row">
+            <!-- Màn hình nhỏ (Mobile - col-12): 1 ảnh/dòng -->
+            <!-- Màn hình vừa (Tablet - col-sm-6): 2 ảnh/dòng -->
+            <!-- Màn hình lớn (Desktop - col-lg-3): 4 ảnh/dòng -->
+            
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=1" alt="Gallery Image">
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=2" alt="Gallery Image">
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=3" alt="Gallery Image">
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=4" alt="Gallery Image">
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=5" alt="Gallery Image">
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=6" alt="Gallery Image">
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=7" alt="Gallery Image">
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item">
+                <img src="https://picsum.photos/400/300?random=8" alt="Gallery Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
