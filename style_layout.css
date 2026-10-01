@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.header .logo {
+    background-color: #222;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header .nav {
+    display: flex;
+    flex-grow: 1;
+}
+
+.header .nav a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+.header .nav a:hover, 
+.header .nav a.active {
+    background-color: #000;
+    color: white;
+}
+
+.header .login {
+    padding: 15px 30px;
+}
+
+.header .login a {
+    color: #ccc;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header .login a:hover {
+    color: white;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1; /* take remaining height */
+    width: 100%;
+}
+
+/* Sidebar Left */
+.sidebar-left {
+    flex: 15%;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.sidebar-left a {
+    display: block;
+    color: #0066cc;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.sidebar-left a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.content {
+    flex: 65%;
+    background-color: white;
+    padding: 30px;
+}
+
+.content h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.content p {
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.content hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.content h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* Sidebar Right */
+.sidebar-right {
+    flex: 20%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ad-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 40px 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+}
+
+/* Footer */
+.footer {
+    background-color: #555;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .sidebar-left, .content, .sidebar-right {
+        flex: 100%;
+    }
+    
+    .header {
+        flex-wrap: wrap;
+    }
+    
+    .header .nav {
+        flex-wrap: wrap;
+        order: 3;
+        width: 100%;
+    }
+    
+    .header .nav a {
+        flex: 1;
+        text-align: center;
+    }
+}
