@@ -14,4 +14,7 @@ public interface IUserDAO {
     // THÊM MỚI 2 PHƯƠNG THỨC SỬ DỤNG STORED PROCEDURE
     public User getUserById(int id);
     public void insertUserStore(User user) throws SQLException;
+
+    // THÊM MỚI PHƯƠNG THỨC XỬ LÝ TRANSACTION
+    public void addUserTransaction(User user, int[] permissionIds) throws SQLException;
 }
