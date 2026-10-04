@@ -54,6 +54,9 @@ public class UserServlet extends HttpServlet {
                 case "edit":
                     showEditForm(request, response);
                     break;
+                case "test-without-tran":
+                    testWithoutTran(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -110,5 +113,11 @@ public class UserServlet extends HttpServlet {
         
         // Quay lại trang danh sách sau khi lưu thành công
         response.sendRedirect("users");
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        // Gọi phương thức cố tình sinh lỗi
+        userDAO.insertUpdateWithoutTransaction();
+        System.out.println("Đã chạy xong hàm testWithoutTran. Hãy kiểm tra database!");
     }
 }

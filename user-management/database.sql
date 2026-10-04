@@ -52,3 +52,12 @@ INSERT INTO permission(id, name) VALUES (1, 'add');
 INSERT INTO permission(id, name) VALUES (2, 'edit');
 INSERT INTO permission(id, name) VALUES (3, 'delete');
 INSERT INTO permission(id, name) VALUES (4, 'view');
+
+-- Tạo bảng Employee
+CREATE TABLE Employee (
+    id INT(3) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    salary INT(220) NOT NULL,
+    created_Date DATETIME,
+    PRIMARY KEY (id)
+);
